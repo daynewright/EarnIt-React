@@ -10,17 +10,11 @@ export default class Earnit extends Component {
     super(props, context);
 
     this.goToLogin = function() {
-      return route.name = 'LOGIN';
+      this.nav.push({name: 'LOGIN'});
     };
 
     this.goToRegister = function() {
-      return route.name = 'REGISTER';
-    };
-  }
-
-  getRememberHandler(id) {
-    return (component) => {
-      this[id] = component;
+      this.nav.push({name: 'REGISTER'});
     };
   }
 
@@ -29,13 +23,13 @@ export default class Earnit extends Component {
     case 'LOGIN':
       return (
         <View>
-          <LoginForm />
+          <LoginForm nav={nav} />
         </View>
       );
     case 'REGISTER':
       return (
         <View>
-          <RegisterForm />
+          <RegisterForm nav={nav} />
         </View>
       );
     default:
@@ -58,9 +52,14 @@ export default class Earnit extends Component {
     }
   }
 
+  configureScene() {
+    return Navigator.SceneConfigs.FloatFromBottom;
+  }
+
   render() {
     return (
       <Navigator
+        configureScene={this.configureScene}
         initialRoute={{ name: 'START', index: 0 }}
         ref={((nav) => this.nav = nav)}
         renderScene={this.renderScene.bind(this)}

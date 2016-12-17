@@ -35,6 +35,10 @@ class RegisterForm extends Component {
           console.error(error);
         });
     };
+
+    this.back = function() {
+      this.props.nav.pop({name: 'REGISTER'});
+    };
   }
 
   render() {
@@ -55,9 +59,12 @@ class RegisterForm extends Component {
             onChangeText={(confirmPassword) => this.setState({confirmPassword})}
             value={this.state.confirmPassword}/>
         <TouchableHighlight style={styles.button} onPress={this.RegisterUser.bind(this)}>
-          <Text style={styles.buttonText}>LOGIN</Text>
+          <Text style={styles.buttonText}>REGISTER</Text>
         </TouchableHighlight>
         <Text>{this.state.response}</Text>
+        <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={this.back.bind(this)}>
+          <Text style={styles.buttonText}> {'<'} GO BACK</Text>
+        </TouchableHighlight>
       </View>
     );
   }

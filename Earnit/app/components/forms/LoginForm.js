@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, Alert } from 'react-native';
 import styles from '../styles/styles';
 
 class LoginForm extends Component {
@@ -28,10 +28,21 @@ class LoginForm extends Component {
     .then(response => response.json())
         .then((responseJson) => {
           this.setState({ email: '', password: '', response: responseJson[Object.keys(responseJson)[0]]});
+          if (Object.keys(responseJson)[0] === 'failure' || Object.keys(responseJson)[0] ===  'invalid') {
+            Alert.alert(
+              Object.keys(responseJson)[0].toUpperCase(),
+              this.state.response,
+              [{text: 'OK', onPress: () => console.log('OK Pressed!')},]
+            );
+          }
         })
         .catch((error) => {
           console.error(error);
         });
+    };
+
+    this.back = function() {
+      this.props.nav.pop({name: 'LOGIN'});
     };
   }
 
@@ -52,6 +63,9 @@ class LoginForm extends Component {
           <Text style={styles.buttonText}>LOGIN</Text>
         </TouchableHighlight>
         <Text>{this.state.response}</Text>
+        <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={this.back.bind(this)}>
+          <Text style={styles.buttonText}> {'<'} GO BACK</Text>
+        </TouchableHighlight>
       </View>
     );
   }
