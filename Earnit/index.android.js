@@ -4,23 +4,18 @@ import { AppRegistry, Text, View, Navigator, TouchableHighlight } from 'react-na
 import styles from './app/components/styles/styles';
 import LoginForm from './app/components/forms/LoginForm';
 import RegisterForm from './app/components/forms/RegisterForm';
+import UserView from './app/components/UserView';
 
 export default class Earnit extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.goToLogin = function() {
-      return route.name = 'LOGIN';
+      this.nav.push({name: 'LOGIN'});
     };
 
     this.goToRegister = function() {
-      return route.name = 'REGISTER';
-    };
-  }
-
-  getRememberHandler(id) {
-    return (component) => {
-      this[id] = component;
+      this.nav.push({name: 'REGISTER'});
     };
   }
 
@@ -29,13 +24,19 @@ export default class Earnit extends Component {
     case 'LOGIN':
       return (
         <View>
-          <LoginForm />
+          <LoginForm nav={nav} />
         </View>
       );
     case 'REGISTER':
       return (
         <View>
-          <RegisterForm />
+          <RegisterForm nav={nav} />
+        </View>
+      );
+    case 'HOME':
+      return (
+        <View>
+          <UserView nav={nav} />
         </View>
       );
     default:
@@ -58,9 +59,14 @@ export default class Earnit extends Component {
     }
   }
 
+  configureScene() {
+    return Navigator.SceneConfigs.FloatFromBottom;
+  }
+
   render() {
     return (
       <Navigator
+        configureScene={this.configureScene}
         initialRoute={{ name: 'START', index: 0 }}
         ref={((nav) => this.nav = nav)}
         renderScene={this.renderScene.bind(this)}
