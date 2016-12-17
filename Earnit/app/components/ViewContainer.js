@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Text, TextInput } from 'react-native';
+import { View, TouchableHighlight, Text } from 'react-native';
 import styles from './styles/styles';
 import LoginForm from './forms/LoginForm';
 import RegisterForm from './forms/RegisterForm';
@@ -47,15 +47,12 @@ class ViewContainer extends Component {
   render() {
     return  (
         <View style={{flex: 1}}>
-          <LoginForm />
-          {/* <RegisterForm /> */}
-          {/* <TouchableHighlight style={styles.button} onPress={this.hitAPIwithAsync.bind(this)}>
-            <Text style={styles.buttonText}>GET USER</Text>
+          <TouchableHighlight>
+            <Text>LOGIN</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={[styles.button, styles.cancel]} onPress={this.loggOff.bind(this)}>
-            <Text style={styles.buttonText}>LOG OFF</Text>
+          <TouchableHighlight>
+            <Text>REGISTER</Text>
           </TouchableHighlight>
-          <UserView user={this.state.user}/> */}
         </View>
     );
   }

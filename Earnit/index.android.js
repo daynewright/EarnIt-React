@@ -1,38 +1,75 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
-import ViewContainer from './app/components/ViewContainer';
 
+import React, { Component } from 'react';
+import { AppRegistry, Text, View, Navigator, TouchableHighlight } from 'react-native';
+import styles from './app/components/styles/styles';
+import LoginForm from './app/components/forms/LoginForm';
+import RegisterForm from './app/components/forms/RegisterForm';
 
 export default class Earnit extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.goToLogin = function() {
+      return route.name = 'LOGIN';
+    };
+
+    this.goToRegister = function() {
+      return route.name = 'REGISTER';
+    };
+  }
+
+  getRememberHandler(id) {
+    return (component) => {
+      this[id] = component;
+    };
+  }
+
+  renderScene(route, nav) {
+    switch (route.name) {
+    case 'LOGIN':
+      return (
+        <View>
+          <LoginForm />
+        </View>
+      );
+    case 'REGISTER':
+      return (
+        <View>
+          <RegisterForm />
+        </View>
+      );
+    default:
+      return (
+        <View>
+          <TouchableHighlight
+            onPress={this.goToLogin.bind(this)}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>LOGIN</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this.goToRegister.bind(this)}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>REGISTER</Text>
+          </TouchableHighlight>
+        </View>
+      );
+    }
+  }
+
   render() {
     return (
-      <ViewContainer />
+      <Navigator
+        initialRoute={{ name: 'START', index: 0 }}
+        ref={((nav) => this.nav = nav)}
+        renderScene={this.renderScene.bind(this)}
+      />
     );
   }
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+
 
 AppRegistry.registerComponent('Earnit', () => Earnit);
