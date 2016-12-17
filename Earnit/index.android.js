@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Navigator, TouchableHighlight } from 'react-native';
+import { AppRegistry, Text, View, Navigator, TouchableHighlight, Image } from 'react-native';
 import styles from './app/components/styles/styles';
 import LoginForm from './app/components/forms/LoginForm';
 import RegisterForm from './app/components/forms/RegisterForm';
@@ -41,7 +41,10 @@ export default class Earnit extends Component {
       );
     default:
       return (
-        <View>
+        <View style={{flex: 1, paddingTop: 100}}>
+         <Image
+            style={{width: 300, height: 100, alignSelf: 'center'}}
+            source={require('./app/images/earnit-01.png')}/>
           <TouchableHighlight
             onPress={this.goToLogin.bind(this)}
             style={styles.button}

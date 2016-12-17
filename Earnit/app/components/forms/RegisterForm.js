@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableHighlight, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, Alert, Image } from 'react-native';
 import styles from '../styles/styles';
 
 class RegisterForm extends Component {
@@ -51,7 +51,9 @@ class RegisterForm extends Component {
   render() {
     return (
       <View>
-        <Text style={{fontSize: 25, color: 'black', textAlign: 'center'}}>REGISTER</Text>
+        <Image
+           style={{width: 300, height: 100, alignSelf: 'center'}}
+           source={require('../../images/earnit-01.png')}/>
         <TextInput placeholder="Email" keyboardtype={'email-address'}
           ref= "email"
           onChangeText={(email) => this.setState({email})}
@@ -68,7 +70,6 @@ class RegisterForm extends Component {
         <TouchableHighlight style={styles.button} onPress={this.RegisterUser.bind(this)}>
           <Text style={styles.buttonText}>REGISTER</Text>
         </TouchableHighlight>
-        <Text>{this.state.response}</Text>
         <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={this.back.bind(this)}>
           <Text style={styles.buttonText}> {'<'} GO BACK</Text>
         </TouchableHighlight>

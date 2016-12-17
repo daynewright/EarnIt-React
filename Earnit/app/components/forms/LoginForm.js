@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableHighlight, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, Alert, Image } from 'react-native';
 import styles from '../styles/styles';
 
 class LoginForm extends Component {
@@ -54,7 +54,9 @@ class LoginForm extends Component {
   render() {
     return (
       <View>
-        <Text style={{fontSize: 25, color: 'black', textAlign: 'center'}}>LOGIN</Text>
+        <Image
+           style={{width: 300, height: 100, alignSelf: 'center'}}
+           source={require('../../images/earnit-01.png')}/>
         <TextInput placeholder="Email" keyboardtype={'email-address'}
           ref= "email"
           onChangeText={(email) => this.setState({email})}
