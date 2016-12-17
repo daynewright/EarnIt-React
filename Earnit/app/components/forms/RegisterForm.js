@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, Alert } from 'react-native';
 import styles from '../styles/styles';
 
 class RegisterForm extends Component {
@@ -30,6 +30,13 @@ class RegisterForm extends Component {
         .then((responseJson) => {
           console.log(responseJson);
           this.setState({ email: '', password: '', confirmPassword: '', response: responseJson[Object.keys(responseJson)[0]]});
+          if (Object.keys(responseJson)[0] === 'failure' || Object.keys(responseJson)[0] === 'invalid' || Object.keys(responseJson)[0] === 'error') {
+            Alert.alert(
+              Object.keys(responseJson)[0].toUpperCase(),
+              this.state.response,
+              [{text: 'OK', onPress: () => console.log('OK Pressed!')},]
+            );
+          }
         })
         .catch((error) => {
           console.error(error);

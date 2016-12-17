@@ -4,6 +4,7 @@ import { AppRegistry, Text, View, Navigator, TouchableHighlight } from 'react-na
 import styles from './app/components/styles/styles';
 import LoginForm from './app/components/forms/LoginForm';
 import RegisterForm from './app/components/forms/RegisterForm';
+import UserView from './app/components/UserView';
 
 export default class Earnit extends Component {
   constructor(props, context) {
@@ -30,6 +31,12 @@ export default class Earnit extends Component {
       return (
         <View>
           <RegisterForm nav={nav} />
+        </View>
+      );
+    case 'HOME':
+      return (
+        <View>
+          <UserView nav={nav} />
         </View>
       );
     default:
