@@ -13,40 +13,43 @@ class RegisterForm extends Component {
       response: ''
     };
 
-    this.RegisterUser = function() {
-      fetch('http://138.197.44.210/account/register', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password,
-          confirmpassword: this.state.confirmPassword
-        })
-      })
-    .then(response => response.json())
-        .then((responseJson) => {
-          console.log(responseJson);
-          this.setState({ email: '', password: '', confirmPassword: '', response: responseJson[Object.keys(responseJson)[0]]});
-          if (Object.keys(responseJson)[0] === 'failure' || Object.keys(responseJson)[0] === 'invalid' || Object.keys(responseJson)[0] === 'error') {
-            Alert.alert(
-              Object.keys(responseJson)[0].toUpperCase(),
-              this.state.response,
-              [{text: 'OK', onPress: () => console.log('OK Pressed!')},]
-            );
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-
-    this.back = function() {
-      this.props.nav.pop({name: 'REGISTER'});
-    };
+    this.back = this.back.bind(this);
+    this.RegisterUser = this.RegisterUser.bind(this);
   }
+
+  RegisterUser() {
+    fetch('http://138.197.44.210/account/register', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        confirmpassword: this.state.confirmPassword
+      })
+    })
+  .then(response => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        this.setState({ email: '', password: '', confirmPassword: '', response: responseJson[Object.keys(responseJson)[0]]});
+        if (Object.keys(responseJson)[0] === 'failure' || Object.keys(responseJson)[0] === 'invalid' || Object.keys(responseJson)[0] === 'error') {
+          Alert.alert(
+            Object.keys(responseJson)[0].toUpperCase(),
+            this.state.response,
+            [{text: 'OK', onPress: () => console.log('OK Pressed!')},]
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  back() {
+    this.props.nav.pop({name: 'REGISTER'});
+  };
 
   render() {
     return (
@@ -70,7 +73,7 @@ class RegisterForm extends Component {
         <TouchableHighlight style={styles.button} onPress={this.RegisterUser.bind(this)}>
           <Text style={styles.buttonText}>REGISTER</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={this.back.bind(this)}>
+        <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={this.back}>
           <Text style={styles.buttonText}> {'<'} GO BACK</Text>
         </TouchableHighlight>
       </View>
