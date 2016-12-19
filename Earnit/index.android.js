@@ -10,13 +10,16 @@ export default class Earnit extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.goToLogin = function() {
-      this.nav.push({name: 'LOGIN'});
-    };
+    this.goToLogin = this.goToLogin.bind(this);
+    this.goToRegister = this.goToRegister.bind(this);
+  }
 
-    this.goToRegister = function() {
-      this.nav.push({name: 'REGISTER'});
-    };
+  goToLogin() {
+    this.nav.push({name: 'LOGIN'});
+  }
+
+  goToRegister() {
+    this.nav.push({name: 'REGISTER'});
   }
 
   renderScene(route, nav) {

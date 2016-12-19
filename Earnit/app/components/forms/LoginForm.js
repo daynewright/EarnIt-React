@@ -13,42 +13,45 @@ class LoginForm extends Component {
       response: ''
     };
 
-    this.loginUser = function() {
-      fetch('http://138.197.44.210/account/login', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password,
-        })
+    this.loginUser = this.loginUser.bind(this);
+    this.back = this.back.bind(this);
+  }
+
+  loginUser() {
+    fetch('http://138.197.44.210/account/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
       })
-    .then(response => response.json())
-        .then((responseJson) => {
-          this.setState({ email: '', password: '', response: responseJson[Object.keys(responseJson)[0]]});
+    })
+  .then(response => response.json())
+      .then((responseJson) => {
+        this.setState({ email: '', password: '', response: responseJson[Object.keys(responseJson)[0]]});
 
-          if (Object.keys(responseJson)[0] === 'failure' || Object.keys(responseJson)[0] ===  'invalid') {
-            Alert.alert(
-              Object.keys(responseJson)[0].toUpperCase(),
-              this.state.response,
-              [{text: 'OK', onPress: () => console.log('OK Pressed!')},]
-            );
-          }
-          else {
-            this.props.nav.push({name: 'HOME'});
-          }
-          return null;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
+        if (Object.keys(responseJson)[0] === 'failure' || Object.keys(responseJson)[0] ===  'invalid') {
+          Alert.alert(
+            Object.keys(responseJson)[0].toUpperCase(),
+            this.state.response,
+            [{text: 'OK', onPress: () => console.log('OK Pressed!')},]
+          );
+        }
+        else {
+          this.props.nav.push({name: 'HOME'});
+        }
+        return null;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-    this.back = function() {
-      this.props.nav.pop({name: 'LOGIN'});
-    };
+  back() {
+    this.props.nav.pop({name: 'LOGIN'});
   }
 
   render() {
@@ -66,10 +69,10 @@ class LoginForm extends Component {
           ref= "email"
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}/>
-        <TouchableHighlight style={styles.button} onPress={this.loginUser.bind(this)}>
+        <TouchableHighlight style={styles.button} onPress={this.loginUser}>
           <Text style={styles.buttonText}>LOGIN</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={this.back.bind(this)}>
+        <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={this.back}>
           <Text style={styles.buttonText}> {'<'} GO BACK</Text>
         </TouchableHighlight>
       </View>
