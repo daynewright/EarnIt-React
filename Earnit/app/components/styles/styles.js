@@ -7,7 +7,7 @@ module.exports = StyleSheet.create({
     marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#28a297',
+    backgroundColor: '#11aac1',
     marginLeft: 10,
     marginRight: 10,
   },
