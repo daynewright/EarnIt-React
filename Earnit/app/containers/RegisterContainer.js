@@ -46,7 +46,6 @@ class RegisterContainer extends Component {
   }
 
   handleOnClick() {
-    alert(JSON.stringify(this.state));
     this._attemptRegistration();
   };
 
