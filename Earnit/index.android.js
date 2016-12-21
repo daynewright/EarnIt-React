@@ -1,10 +1,13 @@
 
+import './ReactotronConfig';
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import { AppRegistry, Text, View, Navigator, TouchableHighlight, Image } from 'react-native';
 import styles from './app/components/styles/styles';
-import LoginForm from './app/components/forms/LoginForm';
-import RegisterForm from './app/components/forms/RegisterForm';
+import LoginContainer from './app/containers/LoginContainer';
+import RegisterContainer from './app/containers/RegisterContainer';
 import UserView from './app/components/UserView';
+import store from './app/store/configureStore';
 
 export default class Earnit extends Component {
   constructor(props, context) {
@@ -12,6 +15,9 @@ export default class Earnit extends Component {
 
     this.goToLogin = this.goToLogin.bind(this);
     this.goToRegister = this.goToRegister.bind(this);
+    this.renderScene = this.renderScene.bind(this);
+    this.configureScene = this.configureScene.bind(this);
+
   }
 
   goToLogin() {
@@ -27,13 +33,13 @@ export default class Earnit extends Component {
     case 'LOGIN':
       return (
         <View>
-          <LoginForm nav={nav} />
+          <LoginContainer nav={nav} />
         </View>
       );
     case 'REGISTER':
       return (
         <View>
-          <RegisterForm nav={nav} />
+          <RegisterContainer nav={nav} />
         </View>
       );
     case 'HOME':
@@ -49,13 +55,13 @@ export default class Earnit extends Component {
             style={{width: 300, height: 100, alignSelf: 'center'}}
             source={require('./app/images/earnit-01.png')}/>
           <TouchableHighlight
-            onPress={this.goToLogin.bind(this)}
+            onPress={this.goToLogin}
             style={styles.button}
           >
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={this.goToRegister.bind(this)}
+            onPress={this.goToRegister}
             style={styles.button}
           >
             <Text style={styles.buttonText}>REGISTER</Text>
@@ -71,17 +77,17 @@ export default class Earnit extends Component {
 
   render() {
     return (
-      <Navigator
-        configureScene={this.configureScene}
-        initialRoute={{ name: 'START', index: 0 }}
-        ref={((nav) => this.nav = nav)}
-        renderScene={this.renderScene.bind(this)}
-      />
+      <Provider store={store}>
+        <Navigator
+          configureScene={this.configureScene}
+          initialRoute={{ name: 'START', index: 0 }}
+          ref={((nav) => this.nav = nav)}
+          renderScene={this.renderScene}
+        />
+    </Provider>
     );
   }
 
 }
-
-
 
 AppRegistry.registerComponent('Earnit', () => Earnit);
