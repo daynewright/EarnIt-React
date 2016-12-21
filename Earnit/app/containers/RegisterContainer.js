@@ -15,6 +15,7 @@ class RegisterContainer extends Component {
       'confirmPassword': ''
     };
 
+    this._attemptRegistration = this._attemptRegistration.bind(this);
     this.handleOnChangeEmail = this.handleOnChangeEmail.bind(this);
     this.handleOnChangePassword = this.handleOnChangePassword.bind(this);
     this.handleOnChangeConfirmPassword = this.handleOnChangeConfirmPassword.bind(this);
@@ -24,7 +25,7 @@ class RegisterContainer extends Component {
 
   _attemptRegistration() {
     console.log(this.state);
-    this.props.RegisterUser(this.state);
+    this.props.registerUser(this.state);
   }
 
   handleOnChangeEmail(text) {
@@ -46,7 +47,7 @@ class RegisterContainer extends Component {
 
   handleOnClick() {
     alert(JSON.stringify(this.state));
-    // this._attemptRegistration();
+    this._attemptRegistration();
   };
 
   back() {
