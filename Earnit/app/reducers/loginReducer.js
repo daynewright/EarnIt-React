@@ -9,6 +9,13 @@ export default function loginReducer(state = initialState.user, action) {
       email: action.payload.email,
       password: action.payload.password
     };
+  case action.REGISTER_USER:
+    return {
+      ...state,
+      email: action.payload.email,
+      password: action.payload.password,
+      confirmPassword: action.payload.confirmPassword
+    }
   default:
     return state;
   }

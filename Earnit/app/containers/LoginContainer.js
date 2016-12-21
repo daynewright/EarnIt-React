@@ -10,6 +10,7 @@ class LoginContainer extends Component {
   constructor(props) {
     super(props);
 
+    this._attemptLogin = this._attemptLogin.bind(this);
     this.back = this.back.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleOnChangeEmail = this.handleOnChangeEmail.bind(this);
@@ -22,7 +23,6 @@ class LoginContainer extends Component {
   }
 
   _attemptLogin() {
-    console.log(this.state);
     this.props.loginUser(this.state);
   }
 
@@ -39,8 +39,7 @@ class LoginContainer extends Component {
   }
 
   handleOnClick() {
-    alert(JSON.stringify(this.state));
-    // this._attemptLogin();
+    this._attemptLogin();
   };
 
   // loginUser() {
