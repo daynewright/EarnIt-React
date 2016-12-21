@@ -1,21 +1,21 @@
-import * as actions from '../actions/actionTypes';
 import initialState from './initialState';
+import  * as actions from '../actions/actionTypes';
 
-export default function loginReducer(state = initialState.user, action) {
+export default function userReducer(state = initialState.user, action) {
   switch (action.type) {
-  case action.LOGIN_USER:
+  case actions.LOGIN_USER:
     return {
       ...state,
       email: action.payload.email,
       password: action.payload.password
     };
-  case action.REGISTER_USER:
+  case actions.REGISTER_USER:
     return {
       ...state,
       email: action.payload.email,
       password: action.payload.password,
       confirmPassword: action.payload.confirmPassword
-    }
+    };
   default:
     return state;
   }
