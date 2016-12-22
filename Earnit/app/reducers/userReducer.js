@@ -44,9 +44,7 @@ export default function userReducer(state = initialState.user, action) {
     return {
       ...state,
       error: `Unable to register user with email ${state.user.email}.`,
-      password: '',
-      confirmPassword: '',
-      email: '',
+      user: {},
       loading: false
     };
   // loading for register and login
