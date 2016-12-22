@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
 import LoginForm from '../components/forms/LoginForm';
@@ -21,7 +22,18 @@ class LoginContainer extends Component {
   _attemptLogin() {
     Promise.resolve(this.props.loginUser(this.state))
       .then(() => {
-        this.props.nav.push({name: 'MAIN'});
+        setTimeout(() => {
+          console.log('THIS SHOULD BE LAST ACTION VALUE: ', this.props.user);
+          if (this.props.user.login) {
+            this.props.nav.push({name: 'HOME'});
+          }
+          else {
+            const error = this.props.user.error;
+            console.log(Object.keys(error));
+            console.log(error[Object.keys(error)]);
+            Alert.alert(Object.keys(error)[0].toUpperCase(), error[Object.keys(error)[0]]);
+          }
+        }, 2000);
       });
   }
 
