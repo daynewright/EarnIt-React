@@ -1,8 +1,8 @@
 const initialState = {
-  user: {
-    email: '',
-    password: ''
-  }
+  user: {},
+  child: {},
+  events: {},
+  rewards: {}
 };
 
 export default initialState;
