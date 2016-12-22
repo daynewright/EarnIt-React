@@ -16,14 +16,13 @@ class LoginContainer extends Component {
     this.handleOnChangeEmail = this.handleOnChangeEmail.bind(this);
     this.handleOnChangePassword = this.handleOnChangePassword.bind(this);
 
-    this.state = {
-      email: '',
-      password: ''
-    };
   }
 
   _attemptLogin() {
-    this.props.loginUser(this.state);
+    Promise.resolve(this.props.loginUser(this.state))
+      .then(() => {
+        this.props.nav.push({name: 'MAIN'});
+      });
   }
 
   handleOnChangePassword(text) {
@@ -42,39 +41,6 @@ class LoginContainer extends Component {
     this._attemptLogin();
   };
 
-  // loginUser() {
-  //   fetch('http://138.197.44.210/account/login', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       email: this.state.email,
-  //       password: this.state.password,
-  //     })
-  //   })
-  // .then(response => response.json())
-  //     .then((responseJson) => {
-  //       this.setState({ email: '', password: '', response: responseJson[Object.keys(responseJson)[0]]});
-  //
-  //       if (Object.keys(responseJson)[0] === 'failure' || Object.keys(responseJson)[0] ===  'invalid') {
-  //         Alert.alert(
-  //           Object.keys(responseJson)[0].toUpperCase(),
-  //           this.state.response,
-  //           [{text: 'OK', onPress: () => console.log('OK Pressed!')},]
-  //         );
-  //       }
-  //       else {
-  //         this.props.nav.push({name: 'HOME'});
-  //       }
-  //       return null;
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-
   back() {
     this.props.nav.pop({name: 'LOGIN'});
   }
@@ -86,11 +52,19 @@ class LoginContainer extends Component {
         onSubmit={this.handleOnClick}
         onChangePassword={this.handleOnChangePassword}
         onChangeEmail={this.handleOnChangeEmail}
+        email={this.props.email}
+        password={this.props.password}
         />
     );
   }
 }
 
+const mapStateToProps = function(state) {
+  return {
+    user: state.user
+  };
+};
+
 const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
 
-export default connect(null, mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

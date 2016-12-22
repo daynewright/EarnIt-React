@@ -9,9 +9,11 @@ const LoginForm = ({email, password, onSubmit, onChangePassword, onChangeEmail, 
              style={{width: 300, height: 100, alignSelf: 'center'}}
              source={require('../../images/earnit-01.png')}/>
              <TextInput placeholder="Email" keyboardtype={'email-address'}
+               value={email}
                onChangeText={onChangeEmail}
                />
              <TextInput placeholder="Password" secureTextEntry={true}
+               value={password}
                onChangeText={onChangePassword}
               />
              <TouchableHighlight style={styles.button} onPress={onSubmit}>

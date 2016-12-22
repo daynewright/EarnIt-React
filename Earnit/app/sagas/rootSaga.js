@@ -1,5 +1,5 @@
 import { fork } from 'redux-saga/effects';
-import { fetchUser } from './userSaga';
+import { watchSignInRequest } from './userSaga';
 
 function startSagas(...sagas) {
   return function* rootSaga() {
@@ -8,7 +8,7 @@ function startSagas(...sagas) {
 }
 
 const rootSaga = startSagas(
-  fetchUser
+  watchSignInRequest
 );
 
 export default rootSaga;

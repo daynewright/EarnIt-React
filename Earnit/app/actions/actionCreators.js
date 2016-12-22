@@ -58,6 +58,18 @@ export function failureDeleteChild(error) {
 export function attemptingChild() {
   return { type: actions.CHILD_ATTEMPT };
 }
+
+export function getChildren() {
+  return { type: actions.GET_CHILDREN };
+}
+
+export function successGetChildren(children) {
+  return { type: actions.GET_CHILDREN_SUCCESS, payload: children };
+}
+
+export function failureGetChildren(error) {
+  return { type: actions.GET_CHILDREN_FAILURE, payload: error };
+}
 // END::Children action creators //
 
 // START::Event action creators //
