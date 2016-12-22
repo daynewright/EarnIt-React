@@ -19,7 +19,8 @@ function* loginUser(action) {
     if (data.status === 400) {
       const error = yield data.json();
       yield put(actionCreators.failureUserLogin(error));
-    } else {
+    }
+    else {
       const data = yield call(fetch, 'http://138.197.44.210/account/getuser');
       const user = yield data.json();
       yield put(actionCreators.successUserLogin(user));

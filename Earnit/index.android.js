@@ -6,7 +6,7 @@ import { AppRegistry, Text, View, Navigator, TouchableHighlight, Image } from 'r
 import styles from './app/components/styles/styles';
 import LoginContainer from './app/containers/LoginContainer';
 import RegisterContainer from './app/containers/RegisterContainer';
-import MainContainer from './app/containers/MainContainer';
+import HomeContainer from './app/containers/HomeContainer';
 import store from './app/store/configureStore';
 
 export default class Earnit extends Component {
@@ -45,13 +45,7 @@ export default class Earnit extends Component {
     case 'HOME':
       return (
         <View>
-          <UserView nav={nav} />
-        </View>
-      );
-    case 'MAIN':
-      return (
-        <View>
-          <MainContainer nav={nav} />
+          <HomeContainer nav={nav} />
         </View>
       );
     default:

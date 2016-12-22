@@ -24,7 +24,8 @@ class MainContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    user: state.user
+    user: state.user,
+    children: state.children
   };
 };
 
