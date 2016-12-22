@@ -13,13 +13,14 @@ export default function userReducer(state = initialState.user, action) {
   case actions.LOGIN_USER_SUCCESS:
     return {
       ...state,
+      id: action.payload.user.id,
       password: '',
       loading: false
     };
   case actions.LOGIN_USER_FAILURE:
     return {
       ...state,
-      error: `Unable to login user with email ${state.user.email}.`,
+      error: action.payload,
       email: '',
       password: '',
       loading: false
