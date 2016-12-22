@@ -30,7 +30,7 @@ export function attemptingRegOrLogin() {
 }
 // END::Registration or Login action creators //
 
-// START::Children action types //
+// START::Children action creators //
 export function createChild(child) {
   return { type: actions.CREATE_CHILD, payload: child };
 }
@@ -58,9 +58,9 @@ export function failureDeleteChild(error) {
 export function attemptingChild() {
   return { type: actions.CHILD_ATTEMPT };
 }
-// END::Children action types //
+// END::Children action creators //
 
-// START::Event action types //
+// START::Event action creators //
 export function createEvent(singleEvent) {
   return { type: actions.CREATE_EVENT, payload: singleEvent };
 }
@@ -88,9 +88,9 @@ export function failureDeleteEvent(error) {
 export function attemptingEvent() {
   return { type: actions.EVENT_ATTEMPT };
 }
-// END::Event action types //
+// END::Event action creators //
 
-// START::Reward action types //
+// START::Reward action creators //
 export function createReward(reward) {
   return { type: actions.CREATE_REWARD, payload: reward };
 }
@@ -118,9 +118,9 @@ export function failureDeleteReward(error) {
 export function attemptingReward() {
   return { type: actions.REWARD_ATTEMPT };
 }
-// END::Reward action types //
+// END::Reward action creators //
 
-// START::RewardPoint action types //
+// START::RewardPoint action creators //
 export function createPoint(point) {
   return { type: actions.CREATE_POINT, payload: point };
 }
@@ -136,9 +136,9 @@ export function failureCreatePoint(error) {
 export function attemptingCreatePoint() {
   return { type: actions.CREATE_POINT_ATTEMPT };
 }
-// END::RewardPoint action types //
+// END::RewardPoint action creators //
 
-// START::RewardRedeemed action types //
+// START::RewardRedeemed action creators //
 export function createRewardRedeemed(rewardId) {
   return { type: actions.CREATE_REWARD_REDEEMED, payload: rewardId };
 }
@@ -154,4 +154,4 @@ export function failureCreateRewardRedeemed(error) {
 export function attemptingRewardRedeemed() {
   return { type: actions.REWARD_REDEEMED_ATTEMPT };
 }
-// END::RewardRedeemed action types //
+// END::RewardRedeemed action creators //
