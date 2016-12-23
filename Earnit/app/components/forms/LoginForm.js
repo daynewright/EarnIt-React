@@ -16,12 +16,12 @@ const LoginForm = ({email, password, onSubmit, onChangePassword, onChangeEmail, 
                value={password}
                onChangeText={onChangePassword}
               />
-             <TouchableHighlight style={styles.button} onPress={onSubmit}>
-               <Text style={styles.buttonText}>LOGIN</Text>
-             </TouchableHighlight>
-             <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={back}>
-               <Text style={styles.buttonText}> {'<'} GO BACK</Text>
-             </TouchableHighlight>
+               <TouchableHighlight style={styles.button} onPress={onSubmit}>
+                 <Text style={styles.buttonText}>LOGIN</Text>
+               </TouchableHighlight>
+               <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={back}>
+                 <Text style={styles.buttonText}> {'<'} GO BACK</Text>
+               </TouchableHighlight>
         </View>
 );
 
@@ -31,7 +31,6 @@ LoginForm.PropTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChangeEmail: PropTypes.func.isRequired,
   onChangePassword: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
 };
 
 export default LoginForm;

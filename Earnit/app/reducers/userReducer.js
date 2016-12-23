@@ -13,6 +13,7 @@ export default function userReducer(state = initialState.user, action) {
   case actions.LOGIN_USER_SUCCESS:
     return {
       ...state,
+      error: null,
       id: action.payload.user.id,
       password: '',
       loading: false,
@@ -32,6 +33,7 @@ export default function userReducer(state = initialState.user, action) {
   case actions.REGISTER_USER:
     return {
       ...state,
+      error: null,
       email: action.payload.email,
       password: action.payload.password,
       confirmPassword: action.payload.confirmPassword,

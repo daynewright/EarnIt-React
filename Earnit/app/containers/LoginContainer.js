@@ -11,19 +11,23 @@ class LoginContainer extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      email: '',
+      password: ''
+    };
+
     this._attemptLogin = this._attemptLogin.bind(this);
     this.back = this.back.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleOnChangeEmail = this.handleOnChangeEmail.bind(this);
     this.handleOnChangePassword = this.handleOnChangePassword.bind(this);
-
+    this.dismissKeyboard = require('dismissKeyboard');
   }
 
   _attemptLogin() {
     Promise.resolve(this.props.loginUser(this.state))
       .then(() => {
         setTimeout(() => {
-          console.log('THIS SHOULD BE LAST ACTION VALUE: ', this.props.user);
           if (this.props.user.login) {
             this.props.nav.push({name: 'HOME'});
           }
@@ -50,10 +54,18 @@ class LoginContainer extends Component {
   }
 
   handleOnClick() {
-    this._attemptLogin();
+    this.dismissKeyboard();
+    if (this.state.email === '' || !this.state.password === '') {
+      Alert.alert('ERROR', 'Email and password required');
+    }
+    else {
+      this._attemptLogin();
+    }
+
   };
 
   back() {
+    this.dismissKeyboard();
     this.props.nav.pop({name: 'LOGIN'});
   }
 
