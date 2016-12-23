@@ -18,7 +18,7 @@ class ToolbarContainer extends Component {
     }
     if (position === 1) {
       this.props.logoffUser();
-      this.props.nav.push({name: 'HOME'});
+      this.props.nav.resetTo({name: ''});
     }
   }
 

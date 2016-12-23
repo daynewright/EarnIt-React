@@ -9,30 +9,17 @@ class HomeContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.addChild = this.addChild.bind(this);
     this.getChildren = this.getChildren.bind(this);
-    this.logout = this.logout.bind(this);
-  }
-
-  logout() {
-    this.props.logoffUser();
-    this.props.nav.pop({ name: 'HOME'});
   }
 
   getChildren() {
     this.props.getChildren();
   }
 
-  addChild() {
-    this.props.nav.push({name: 'ADD_CHILD'});
-  }
-
   render() {
     return (
       <HomeView
-        logout={this.logout}
         children={this.children}
-        addChild={this.addChild}
         nav={this.props.nav}
         />
     );

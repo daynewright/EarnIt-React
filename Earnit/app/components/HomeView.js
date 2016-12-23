@@ -4,15 +4,10 @@ import styles from './styles/styles';
 import ToolbarContainer from '../containers/ToolbarContainer';
 
 
-const HomeView = ({logout, children, addChild, nav}) => (
+const HomeView = ({ children, addChild, nav}) => (
   <View>
     <ToolbarContainer nav={nav}/>
-    <TouchableHighlight onPress={logout}>
-      <Text>LOGOFF</Text>
-    </TouchableHighlight>
-    <TouchableHighlight onPress={addChild}>
-      <Text>ADD CHILD</Text>
-    </TouchableHighlight>
+    <Text> Just some test text</Text>
   </View>
 );
 
