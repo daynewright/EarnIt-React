@@ -29,13 +29,14 @@ class LoginContainer extends Component {
       .then(() => {
         setTimeout(() => {
           if (this.props.user.login) {
+            this.props.getChildren();
             this.props.nav.push({name: 'HOME'});
           }
           else {
             const error = this.props.user.error;
             Alert.alert(Object.keys(error)[0].toUpperCase(), error[Object.keys(error)[0]]);
           }
-        }, 2000);
+        }, 3000);
       });
   }
 

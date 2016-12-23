@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { ListView } from 'react-native';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
 import HomeView from '../components/HomeView';
@@ -9,22 +10,23 @@ class HomeContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.getChildren = this.getChildren.bind(this);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      children: [],
+      dataSource: ds.cloneWithRows(this.props.children)
+    };
   }
 
-  getChildren() {
-    this.props.getChildren();
-  }
 
   render() {
     return (
       <HomeView
-        children={this.children}
         nav={this.props.nav}
+        children={this.props.children}
+        DataSource={this.state.DataSource}
         />
     );
   }
-
 }
 
 const mapStateToProps = function(state) {

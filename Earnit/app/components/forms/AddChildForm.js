@@ -25,13 +25,13 @@ const AddChildForm = ({name, age, onSubmit, onChangeName, onChangeAge, back}) =>
         </View>
 );
 
-// AddChildForm.PropTypes = {
-//   back: PropTypes.func.isRequired,
-//   name: PropTypes.string.isRequired,
-//   age: PropTypes.string.isRequired,
-//   onSubmit: PropTypes.func.isRequired,
-//   onChangeName: PropTypes.func.isRequired,
-//   onChangeAge: PropTypes.func.isRequired,
-// };
+AddChildForm.PropTypes = {
+  back: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  age: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChangeName: PropTypes.func.isRequired,
+  onChangeAge: PropTypes.func.isRequired,
+};
 
 export default AddChildForm;

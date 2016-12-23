@@ -2,8 +2,8 @@ const initialState = {
   user: {},
   children: [],
   child: {},
-  events: {},
-  rewards: {}
+  events: [],
+  rewards: []
 };
 
 export default initialState;
