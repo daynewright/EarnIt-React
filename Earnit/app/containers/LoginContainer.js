@@ -33,8 +33,6 @@ class LoginContainer extends Component {
           }
           else {
             const error = this.props.user.error;
-            console.log(Object.keys(error));
-            console.log(error[Object.keys(error)]);
             Alert.alert(Object.keys(error)[0].toUpperCase(), error[Object.keys(error)[0]]);
           }
         }, 2000);

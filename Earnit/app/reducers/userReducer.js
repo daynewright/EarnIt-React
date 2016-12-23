@@ -13,9 +13,10 @@ export default function userReducer(state = initialState.user, action) {
   case actions.LOGIN_USER_SUCCESS:
     return {
       ...state,
-      error: null,
+      error: undefined,
       id: action.payload.user.id,
       password: '',
+      confirmPassword: '',
       loading: false,
       login: true
     };
@@ -26,6 +27,7 @@ export default function userReducer(state = initialState.user, action) {
       id: null,
       email: '',
       password: '',
+      confirmPassword: '',
       loading: false,
       login: false
     };
@@ -33,7 +35,7 @@ export default function userReducer(state = initialState.user, action) {
   case actions.REGISTER_USER:
     return {
       ...state,
-      error: null,
+      error: undefined,
       email: action.payload.email,
       password: action.payload.password,
       confirmPassword: action.payload.confirmPassword,
@@ -51,7 +53,7 @@ export default function userReducer(state = initialState.user, action) {
   case actions.REGISTER_USER_FAILURE:
     return {
       ...state,
-      error: `Unable to register user with email ${state.user.email}.`,
+      error: action.payload,
       user: {},
       loading: false,
       login: false
