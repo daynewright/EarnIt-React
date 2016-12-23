@@ -2,21 +2,39 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
-import LoginForm from '../components/forms/LoginForm';
+import HomeView from '../components/HomeView';
 import * as actionCreators from '../actions/actionCreators';
-import { View, Text } from 'react-native';
 
-class MainContainer extends Component {
+class HomeContainer extends Component {
   constructor(props) {
     super(props);
 
+    this.addChild = this.addChild.bind(this);
+    this.getChildren = this.getChildren.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+  logout() {
+    this.props.logoffUser();
+    this.props.nav.pop({ name: 'HOME'});
+  }
+
+  getChildren() {
+    this.props.getChildren();
+  }
+
+  addChild() {
+    this.props.nav.push({name: 'ADD_CHILD'});
   }
 
   render() {
     return (
-      <View>
-        <Text>YOU ARE LOGGED IN! {this.props.user.email}</Text>
-      </View>
+      <HomeView
+        logout={this.logout}
+        children={this.children}
+        addChild={this.addChild}
+        nav={this.props.nav}
+        />
     );
   }
 
@@ -31,4 +49,4 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

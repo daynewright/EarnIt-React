@@ -28,6 +28,10 @@ export function failureRegisterUser(error) {
 export function attemptingRegOrLogin() {
   return { type: actions.ATTEMPTING_REG_OR_LOGIN };
 }
+
+export function logoffUser() {
+  return { type: actions.LOGOFF_USER };
+}
 // END::Registration or Login action creators //
 
 // START::Children action creators //
