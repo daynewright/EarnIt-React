@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
 import LoginForm from '../components/forms/LoginForm';
@@ -10,18 +11,33 @@ class LoginContainer extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      email: '',
+      password: ''
+    };
+
     this._attemptLogin = this._attemptLogin.bind(this);
     this.back = this.back.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleOnChangeEmail = this.handleOnChangeEmail.bind(this);
     this.handleOnChangePassword = this.handleOnChangePassword.bind(this);
-
+    this.dismissKeyboard = require('dismissKeyboard');
   }
 
   _attemptLogin() {
     Promise.resolve(this.props.loginUser(this.state))
       .then(() => {
-        this.props.nav.push({name: 'MAIN'});
+        setTimeout(() => {
+          if (this.props.user.login) {
+            this.props.nav.push({name: 'HOME'});
+          }
+          else {
+            const error = this.props.user.error;
+            console.log(Object.keys(error));
+            console.log(error[Object.keys(error)]);
+            Alert.alert(Object.keys(error)[0].toUpperCase(), error[Object.keys(error)[0]]);
+          }
+        }, 2000);
       });
   }
 
@@ -38,10 +54,18 @@ class LoginContainer extends Component {
   }
 
   handleOnClick() {
-    this._attemptLogin();
+    this.dismissKeyboard();
+    if (this.state.email === '' || !this.state.password === '') {
+      Alert.alert('ERROR', 'Email and password required');
+    }
+    else {
+      this._attemptLogin();
+    }
+
   };
 
   back() {
+    this.dismissKeyboard();
     this.props.nav.pop({name: 'LOGIN'});
   }
 

@@ -31,6 +31,7 @@ function* loginUser(action) {
   }
 }
 
+
 export function* watchSignInRequest() {
   yield* takeEvery(actions.LOGIN_USER, loginUser);
 }
