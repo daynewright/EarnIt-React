@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableHighlight, Alert, Image } from 'react-n
 import styles from '../styles/styles';
 
 
-const LoginForm = ({email, password, onSubmit, onChangePassword, onChangeEmail, back}) => (
+const LoginForm = ({email, password, onSubmit, onChangePassword, onChangeEmail, back }) => (
         <View>
           <Image
              style={{width: 300, height: 100, alignSelf: 'center'}}

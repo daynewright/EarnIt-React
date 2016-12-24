@@ -9,16 +9,19 @@ export default function userReducer(state = initialState.user, action) {
       ...state,
       email: action.payload.email,
       password: action.payload.password,
+      loading: true,
+      loggedin: false,
+      failed: false
     };
   case actions.LOGIN_USER_SUCCESS:
     return {
       ...state,
-      error: undefined,
       id: action.payload.user.id,
       password: '',
       confirmPassword: '',
       loading: false,
-      login: true
+      loggedin: true,
+      failed: false
     };
   case actions.LOGIN_USER_FAILURE:
     return {
@@ -29,7 +32,8 @@ export default function userReducer(state = initialState.user, action) {
       password: '',
       confirmPassword: '',
       loading: false,
-      login: false
+      loggedin: false,
+      failed: true
     };
   // register reducers
   case actions.REGISTER_USER:

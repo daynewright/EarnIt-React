@@ -19,11 +19,13 @@ class HomeContainer extends Component {
 
 
   render() {
+    const { children, nav, DataSource } = this.props;
+
     return (
       <HomeView
-        nav={this.props.nav}
-        children={this.props.children}
-        DataSource={this.state.DataSource}
+        nav={nav}
+        children={children}
+        DataSource={DataSource}
         />
     );
   }
