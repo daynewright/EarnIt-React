@@ -36,12 +36,18 @@ class LoginContainer extends Component {
     this.setState({
       password: text
     });
+    if (this.props.failed) {
+      this.props.resetLogin(this.state);
+    }
   }
 
   handleOnChangeEmail(text) {
     this.setState({
       email: text
     });
+    if (this.props.failed) {
+      this.props.resetLogin(this.state);
+    }
   }
 
   handleOnClick() {

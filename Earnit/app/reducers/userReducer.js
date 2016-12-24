@@ -13,6 +13,11 @@ export default function userReducer(state = initialState.user, action) {
       loggedin: false,
       failed: false
     };
+  case actions.RESET_LOGIN:
+    return {
+      ...state,
+      failed: false
+    };
   case actions.LOGIN_USER_SUCCESS:
     return {
       ...state,
