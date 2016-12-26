@@ -13,19 +13,18 @@ class HomeContainer extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       children: [],
-      dataSource: ds.cloneWithRows(this.props.children)
+      dataSource: ds.cloneWithRows(['test', 'test'])
     };
   }
 
 
   render() {
-    const { children, nav, DataSource } = this.props;
+    const { nav } = this.props;
 
     return (
       <HomeView
         nav={nav}
-        children={children}
-        DataSource={DataSource}
+        dataSource={this.state.dataSource}
         />
     );
   }

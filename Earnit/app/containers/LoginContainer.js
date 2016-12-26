@@ -65,16 +65,18 @@ class LoginContainer extends Component {
     this.props.nav.pop({name: 'LOGIN'});
   }
 
+  componentWillUpdate(nextProps) {
+    if (nextProps.loggedin) {
+      nextProps.getChildren();
+      nextProps.nav.push({name: 'HOME'});
+    }
+  }
+
   render() {
     const { loading, loggedin, error, failed } = this.props;
 
     if (failed) {
       Alert.alert(Object.keys(error)[0].toUpperCase(), error[Object.keys(error)[0]]);
-    }
-
-    if (loggedin) {
-      this.props.getChildren();
-      this.props.nav.push({name: 'HOME'});
     }
 
     return (
