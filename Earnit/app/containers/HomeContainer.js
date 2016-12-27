@@ -15,6 +15,8 @@ class HomeContainer extends Component {
     this.state = {
       dataSource: ds.cloneWithRows(props.children),
     };
+
+    this.viewChild = this.viewChild.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,14 +25,20 @@ class HomeContainer extends Component {
     }
   }
 
+  viewChild(childId) {
+    console.log('********************* This is the', childId);
+    this.props.nav.push({name: 'VIEW_CHILD'});
+  }
+
   render() {
-    const { nav } = this.props;
+    const { viewChild } = this.props;
 
     return (
       <View>
+        <Spinner visible={this.props.children.loading} />
         <HomeView
-          nav={nav}
           dataSource={this.state.dataSource}
+          viewChild={this.viewChild}
         />
       </View>
     );
