@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react';
 import { View, TouchableHighlight, Text, ListView } from 'react-native';
-import styles from './styles/styles';
 import ToolbarContainer from '../containers/ToolbarContainer';
-
+import styles from './styles/styles';
 
 const HomeView = ({ nav, dataSource }) => (
   <View>
     <ToolbarContainer nav={nav}/>
     <ListView
       dataSource={dataSource}
-      renderRow={(child)=> <View><Text>{child.name}</Text><Text>{child.age}</Text></View>}
+      renderRow={(child)=>  (
+        <TouchableHighlight style={[styles.button, styles.childButton]}>
+          <Text key={child.childId} style={styles.buttonText}>{child.name} {child.age}</Text>
+        </TouchableHighlight>
+      )}
       />
   </View>
 );
