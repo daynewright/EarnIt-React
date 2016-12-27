@@ -30,6 +30,7 @@ class LoginContainer extends Component {
 
   _attemptLogin() {
     this.props.loginUser(this.state);
+    this.props.getChildren();
   }
 
   handleOnChangePassword(text) {
@@ -65,9 +66,8 @@ class LoginContainer extends Component {
     this.props.nav.pop({name: 'LOGIN'});
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps, nextState) {
     if (nextProps.loggedin) {
-      nextProps.getChildren();
       nextProps.nav.push({name: 'HOME'});
     }
   }
@@ -98,7 +98,8 @@ const mapStateToProps = function(state) {
     loading: state.user.loading,
     loggedin: state.user.loggedin,
     error: state.user.error,
-    failed: state.user.failed
+    failed: state.user.failed,
+    children: state.children.childArray
   };
 };
 

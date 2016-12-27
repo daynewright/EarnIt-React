@@ -9,7 +9,7 @@ const HomeView = ({ nav, dataSource }) => (
     <ToolbarContainer nav={nav}/>
     <ListView
       dataSource={dataSource}
-      renderRow={(rowData)=> <Text>{rowData}</Text>}
+      renderRow={(child)=> <View><Text>{child.name}</Text><Text>{child.age}</Text></View>}
       />
   </View>
 );

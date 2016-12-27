@@ -1,6 +1,6 @@
 const initialState = {
   user: {},
-  children: [],
+  children: { childArray: [ ] },
   child: {},
   events: [],
   rewards: []

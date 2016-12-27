@@ -11,8 +11,8 @@ function* getChildren() {
       yield put(actionCreators.failureGetChildren(error));
     }
     else {
-     const children = yield data.json();
-     yield put(actionCreators.successGetChildren(children));
+      const children = yield data.json();
+      yield put(actionCreators.successGetChildren(children));
     }
   }
   catch (error) {
