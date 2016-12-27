@@ -9,6 +9,8 @@ export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
 export const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE';
 
 export const ATTEMPTING_REG_OR_LOGIN = 'ATTEMPTING_REG_OR_LOGIN';
+export const RESET_LOGIN = 'RESET_LOGIN';
+export const LOGOFF_USER = 'LOGOFF_USER';
 // END::Registration or Login action types //
 
 // START::Children action types //

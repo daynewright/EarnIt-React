@@ -14,6 +14,11 @@ module.exports = StyleSheet.create({
   cancelButton: {
     backgroundColor: '#666',
   },
+  childButton: {
+    backgroundColor: '#757575',
+    borderColor: '#000',
+    borderWidth: 1
+  },
   buttonText: {
     fontSize: 18,
     fontWeight: '600',

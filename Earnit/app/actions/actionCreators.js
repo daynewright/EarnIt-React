@@ -5,6 +5,10 @@ export function loginUser(user) {
   return { type: actions.LOGIN_USER, payload: user };
 };
 
+export function resetLogin(user) {
+  return { type: actions.RESET_LOGIN, payload: user };
+}
+
 export function registerUser(user) {
   return { type: actions.REGISTER_USER, payload: user };
 }
@@ -27,6 +31,10 @@ export function failureRegisterUser(error) {
 
 export function attemptingRegOrLogin() {
   return { type: actions.ATTEMPTING_REG_OR_LOGIN };
+}
+
+export function logoffUser() {
+  return { type: actions.LOGOFF_USER };
 }
 // END::Registration or Login action creators //
 

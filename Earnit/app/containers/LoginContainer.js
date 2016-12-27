@@ -1,11 +1,12 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Alert } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
 import LoginForm from '../components/forms/LoginForm';
 import * as actionCreators from '../actions/actionCreators';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -13,7 +14,10 @@ class LoginContainer extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      loading: false,
+      loggedin: false,
+      failed: false
     };
 
     this._attemptLogin = this._attemptLogin.bind(this);
@@ -25,30 +29,26 @@ class LoginContainer extends Component {
   }
 
   _attemptLogin() {
-    Promise.resolve(this.props.loginUser(this.state))
-      .then(() => {
-        setTimeout(() => {
-          if (this.props.user.login) {
-            this.props.nav.push({name: 'HOME'});
-          }
-          else {
-            const error = this.props.user.error;
-            Alert.alert(Object.keys(error)[0].toUpperCase(), error[Object.keys(error)[0]]);
-          }
-        }, 2000);
-      });
+    this.props.loginUser(this.state);
+    this.props.getChildren();
   }
 
   handleOnChangePassword(text) {
     this.setState({
       password: text
     });
+    if (this.props.failed) {
+      this.props.resetLogin(this.state);
+    }
   }
 
   handleOnChangeEmail(text) {
     this.setState({
       email: text
     });
+    if (this.props.failed) {
+      this.props.resetLogin(this.state);
+    }
   }
 
   handleOnClick() {
@@ -59,7 +59,6 @@ class LoginContainer extends Component {
     else {
       this._attemptLogin();
     }
-
   };
 
   back() {
@@ -67,23 +66,40 @@ class LoginContainer extends Component {
     this.props.nav.pop({name: 'LOGIN'});
   }
 
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.loggedin) {
+      nextProps.nav.push({name: 'HOME'});
+    }
+  }
+
   render() {
+    const { loading, loggedin, error, failed } = this.props;
+
+    if (failed) {
+      Alert.alert(Object.keys(error)[0].toUpperCase(), error[Object.keys(error)[0]]);
+    }
+
     return (
-      <LoginForm
-        back={this.back}
-        onSubmit={this.handleOnClick}
-        onChangePassword={this.handleOnChangePassword}
-        onChangeEmail={this.handleOnChangeEmail}
-        email={this.props.email}
-        password={this.props.password}
+      <View>
+        <Spinner visible={loading} />
+        <LoginForm
+          back={this.back}
+          onSubmit={this.handleOnClick}
+          onChangePassword={this.handleOnChangePassword}
+          onChangeEmail={this.handleOnChangeEmail}
         />
+      </View>
     );
   }
 }
 
 const mapStateToProps = function(state) {
   return {
-    user: state.user
+    loading: state.user.loading,
+    loggedin: state.user.loggedin,
+    error: state.user.error,
+    failed: state.user.failed,
+    children: state.children.childArray
   };
 };
 

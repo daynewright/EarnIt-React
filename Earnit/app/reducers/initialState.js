@@ -1,9 +1,9 @@
 const initialState = {
   user: {},
-  children: [],
+  children: { childArray: [ ] },
   child: {},
-  events: {},
-  rewards: {}
+  events: [],
+  rewards: []
 };
 
 export default initialState;
