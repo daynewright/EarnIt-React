@@ -105,8 +105,16 @@ export function failureDeleteEvent(error) {
   return { type: actions.DELETE_EVENT_FAILURE, payload: error };
 }
 
-export function attemptingEvent() {
-  return { type: actions.EVENT_ATTEMPT };
+export function getEvents(id) {
+  return { type: actions.GET_EVENTS, payload: id };
+}
+
+export function getEventsSuccess(data) {
+  return { type: actions.GET_EVENTS_SUCCESS, payload: data.events };
+}
+
+export function getEventsFailure() {
+  return { type: actions.GET_EVENTS_FAILURE };
 }
 // END::Event action creators //
 

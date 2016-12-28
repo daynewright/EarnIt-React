@@ -25,8 +25,6 @@ export const DELETE_CHILD_FAILURE = 'DELETE_CHILD_FAILURE';
 export const GET_CHILDREN = 'GET_CHILDREN';
 export const GET_CHILDREN_SUCCESS = 'GET_CHILDREN_SUCCESS';
 export const GET_CHILDREN_FAILURE = 'GET_CHILDREN_FAILURE';
-
-export const CHILD_ATTEMPT = 'CHILD_ATTEMPT';
 // END::Children action types //
 
 // START::Event action types //
@@ -34,11 +32,9 @@ export const CREATE_EVENT = 'CREATE_EVENT';
 export const CREATE_EVENT_SUCCESS = 'CREATE_EVENT_SUCCESS';
 export const CREATE_EVENT_FAILURE = 'CREATE_EVENT_FAILURE';
 
-export const DELETE_EVENT = 'DELETE_EVENT';
-export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
-export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE';
-
-export const EVENT_ATTEMPT = 'EVENT_ATTEMPT';
+export const GET_EVENTS = 'GET_EVENTS';
+export const GET_EVENTS_SUCCESS = 'GET_EVENTS_SUCCESS';
+export const GET_EVENTS_FAILURE = 'GET_EVENTS_FAILURE';
 // END::Event action types //
 
 // START::Reward action types //
@@ -49,22 +45,16 @@ export const CREATE_REWARD_FAILURE = 'CREATE_REWARD_FAILURE';
 export const DELETE_REWARD = 'DELETE_REWARD';
 export const DELETE_REWARD_SUCCESS = 'DELETE_REWARD_SUCCESS';
 export const DELETE_REWARD_FAILURE = 'DELETE_REWARD_FAILURE';
-
-export const REWARD_ATTEMPT = 'REWARD_ATTEMPT';
 // END::Reward action types //
 
 // START::RewardPoints action types //
 export const CREATE_POINT = 'CREATE_POINT';
 export const CREATE_POINT_SUCCESS = 'CREATE_POINT_SUCCESS';
 export const CREATE_POINT_FAILURE = 'CREATE_POINT_FAILURE';
-
-export const CREATE_POINT_ATTEMPT = 'CREATE_POINT_ATTEMPT';
 // END::RewardPoints action types //
 
 // START::RewardRedeemed action types //
 export const CREATE_REWARD_REDEEMED = 'DELETE_REWARD';
 export const REWARD_REDEEMED_SUCCESS = 'REWARD_REDEEMED_SUCCESS';
 export const REWARD_REDEEMED_FAILURE = 'REWARD_REDEEMED_FAILURE';
-
-export const REWARD_REDEEMED_ATTEMPT = 'REWARD_REDEEMED_ATTEMPT';
 // END::RewardRedeemed action types //

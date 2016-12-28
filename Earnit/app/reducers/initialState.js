@@ -2,7 +2,7 @@ const initialState = {
   user: {},
   children: { childArray: [ ] },
   child: {},
-  events: [],
+  events: { eventsArray: [ ] },
   rewards: []
 };
 

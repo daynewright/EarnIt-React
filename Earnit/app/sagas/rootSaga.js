@@ -1,5 +1,6 @@
 import { fork } from 'redux-saga/effects';
 import { watchSignInRequest, watchRegisterRequest } from './userSaga';
+import { watchGetEvents, watchCreateEvent } from './eventSaga';
 import { watchGetChildren } from './childrenSaga';
 
 function startSagas(...sagas) {
@@ -11,7 +12,9 @@ function startSagas(...sagas) {
 const rootSaga = startSagas(
   watchSignInRequest,
   watchRegisterRequest,
-  watchGetChildren
+  watchGetChildren,
+  watchGetEvents,
+  watchCreateEvent
 );
 
 export default rootSaga;
