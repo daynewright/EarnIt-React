@@ -8,6 +8,8 @@ import LoginContainer from './app/containers/LoginContainer';
 import RegisterContainer from './app/containers/RegisterContainer';
 import HomeContainer from './app/containers/HomeContainer';
 import AddChildContainer from './app/containers/AddChildContainer';
+import ViewChildContainer from './app/containers/ViewChildContainer';
+import ToolbarContainer from './app/containers/ToolbarContainer';
 import store from './app/store/configureStore';
 
 export default class Earnit extends Component {
@@ -46,13 +48,21 @@ export default class Earnit extends Component {
     case 'HOME':
       return (
         <View>
-          <HomeContainer nav={nav} />
+          <ToolbarContainer nav={nav}/>
+          <HomeContainer nav={nav}/>
         </View>
       );
     case 'ADD_CHILD':
       return (
         <View>
           <AddChildContainer nav={nav} />
+        </View>
+      );
+    case 'VIEW_CHILD':
+      return (
+        <View>
+          <ToolbarContainer nav={nav}/>
+          <ViewChildContainer nav={nav}/>
         </View>
       );
     default:
