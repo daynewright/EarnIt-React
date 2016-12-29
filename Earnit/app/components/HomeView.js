@@ -8,7 +8,17 @@ class HomeView extends Component {
   constructor(props) {
     super(props);
 
+    this.addChild = this.addChild.bind(this);
+    this.logOff = this.logOff.bind(this);
     this.renderRow = this.renderRow.bind(this);
+  }
+
+  addChild() {
+    this.props.nav.push({name: 'ADD_CHILD'});
+  }
+
+  logOff() {
+    this.props.nav.resetTo({name: ' '});
   }
 
   renderRow(child) {
@@ -62,7 +72,7 @@ class HomeView extends Component {
           dataSource={dataSource}
           renderRow={this.renderRow}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-          renderHeader={() => <Header />}
+          renderHeader={() => <Header addChild={this.addChild} logOff={this.logOff}/>}
           />
       </View>
     );

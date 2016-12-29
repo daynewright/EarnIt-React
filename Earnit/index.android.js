@@ -47,6 +47,9 @@ export default class Earnit extends Component {
     case 'HOME':
       return (
         <View>
+          <Image
+             style={{width: 150, height: 50, alignSelf: 'center'}}
+             source={require('./app/images/earnit-01.png')}/>
           <HomeContainer nav={nav}/>
         </View>
       );
@@ -59,6 +62,9 @@ export default class Earnit extends Component {
     case 'VIEW_CHILD':
       return (
         <View>
+          <Image
+             style={{width: 150, height: 50, alignSelf: 'center'}}
+             source={require('./app/images/earnit-01.png')}/>
           <ViewChildContainer nav={nav}/>
         </View>
       );

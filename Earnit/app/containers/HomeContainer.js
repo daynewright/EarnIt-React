@@ -31,7 +31,7 @@ class HomeContainer extends Component {
   }
 
   render() {
-    const { viewChild, loading } = this.props;
+    const { viewChild, loading, nav } = this.props;
 
     return (
       <View>
@@ -39,6 +39,7 @@ class HomeContainer extends Component {
         <HomeView
           dataSource={this.state.dataSource}
           viewChild={this.viewChild}
+          nav={nav}
         />
       </View>
     );
