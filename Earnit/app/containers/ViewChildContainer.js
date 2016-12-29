@@ -36,7 +36,7 @@ class ViewChildContainer extends Component {
           <View style={{flex: 1, borderBottomColor: '#757575', borderBottomWidth: 1, paddingLeft: 5, paddingBottom: 10, paddingTop: 10}}>
             <Text style={{fontSize: 20, fontWeight: '900'}}>{event.name}</Text>
             <Text>{event.description}</Text>
-            <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+            <View style={styles.buttonContainer}>
               <TouchableHighlight style={styles.buttonPoint}><Text style={{fontSize: 15}, styles.smButtonText}>+ POINT</Text></TouchableHighlight>
               <TouchableHighlight style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>VIEW REWARD</Text></TouchableHighlight>
               <TouchableHighlight style={styles.buttonDelete}><Text style={{fontSize: 15}, styles.smButtonText}>DELETE</Text></TouchableHighlight>
