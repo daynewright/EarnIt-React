@@ -31,4 +31,42 @@ module.exports = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch'
   },
+  buttonPoint: {
+    height: 30,
+    marginTop: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#75be79',
+    marginRight: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  buttonReward: {
+    height: 30,
+    marginTop: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fabd3a',
+    marginRight: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  buttonDelete: {
+    height: 30,
+    marginTop: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#d13b2e',
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  smButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#FAFAFA',
+    textAlign: 'center',
+  }
 });

@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView, View, Text } from 'react-native';
+import { ListView, View, Text, TouchableHighlight } from 'react-native';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
 import HomeView from '../components/HomeView';
 import * as actionCreators from '../actions/actionCreators';
 import Spinner from 'react-native-loading-spinner-overlay';
 
+
 class ViewChildContainer extends Component {
   constructor(props) {
     super(props);
-
-    console.log('************', props.events);
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
@@ -34,7 +33,15 @@ class ViewChildContainer extends Component {
         <ListView
         dataSource={this.state.dataSource}
         renderRow={(event)=>  (
-            <Text>{event.name} | {event.description} | type: {event.type}</Text>
+          <View style={{flex: 1, borderBottomColor: '#757575', borderBottomWidth: 1, paddingLeft: 5, paddingBottom: 10, paddingTop: 10}}>
+            <Text style={{fontSize: 20, fontWeight: '900'}}>{event.name}</Text>
+            <Text>{event.description}</Text>
+            <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+              <TouchableHighlight style={styles.buttonPoint}><Text style={{fontSize: 15}, styles.smButtonText}>+ POINT</Text></TouchableHighlight>
+              <TouchableHighlight style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>VIEW REWARD</Text></TouchableHighlight>
+              <TouchableHighlight style={styles.buttonDelete}><Text style={{fontSize: 15}, styles.smButtonText}>DELETE</Text></TouchableHighlight>
+            </View>
+          </View>
         )}
       />
       </View>
