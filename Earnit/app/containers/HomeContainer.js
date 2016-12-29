@@ -26,19 +26,20 @@ class HomeContainer extends Component {
   }
 
   viewChild(childId) {
-    console.log('********************* This is the', childId);
+    this.props.getEvents(childId);
     this.props.nav.push({name: 'VIEW_CHILD'});
   }
 
   render() {
-    const { viewChild } = this.props;
+    const { viewChild, loading, nav } = this.props;
 
     return (
       <View>
-        <Spinner visible={this.props.children.loading} />
+        <Spinner visible={loading} />
         <HomeView
           dataSource={this.state.dataSource}
           viewChild={this.viewChild}
+          nav={nav}
         />
       </View>
     );

@@ -9,7 +9,6 @@ import RegisterContainer from './app/containers/RegisterContainer';
 import HomeContainer from './app/containers/HomeContainer';
 import AddChildContainer from './app/containers/AddChildContainer';
 import ViewChildContainer from './app/containers/ViewChildContainer';
-import ToolbarContainer from './app/containers/ToolbarContainer';
 import store from './app/store/configureStore';
 
 export default class Earnit extends Component {
@@ -48,7 +47,9 @@ export default class Earnit extends Component {
     case 'HOME':
       return (
         <View>
-          <ToolbarContainer nav={nav}/>
+          <Image
+             style={{width: 150, height: 50, alignSelf: 'center'}}
+             source={require('./app/images/earnit-01.png')}/>
           <HomeContainer nav={nav}/>
         </View>
       );
@@ -61,7 +62,9 @@ export default class Earnit extends Component {
     case 'VIEW_CHILD':
       return (
         <View>
-          <ToolbarContainer nav={nav}/>
+          <Image
+             style={{width: 150, height: 50, alignSelf: 'center'}}
+             source={require('./app/images/earnit-01.png')}/>
           <ViewChildContainer nav={nav}/>
         </View>
       );
