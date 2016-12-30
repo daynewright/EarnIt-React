@@ -23,7 +23,7 @@ class HomeView extends Component {
 
   renderRow(child) {
 
-    const { viewRewards, viewChild, removeChild } = this.props;
+    const { viewRewards, viewChild, deleteChild } = this.props;
     const swipeoutBtnsRight = [
       {
         text: 'Earned Rewards',
@@ -40,7 +40,7 @@ class HomeView extends Component {
       {
         text: 'Delete',
         backgroundColor: '#d13b2e',
-        onPress: () => { removeChild(child.childId) }
+        onPress: () => { deleteChild(child.childId) }
       }
     ];
 

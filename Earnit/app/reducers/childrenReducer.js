@@ -20,6 +20,12 @@ export default function childrenReducer(state = initialState.children, action) {
       error: action.payload.error,
       loading: false
     };
+  // add new child to childArray
+  case actions.CREATE_CHILD_SUCCESS:
+    return {
+      ...state,
+      childArray: [...state.childArray, action.payload.child]
+    };
   default:
     return state;
   }

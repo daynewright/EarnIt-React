@@ -16,6 +16,8 @@ class HomeContainer extends Component {
       dataSource: ds.cloneWithRows(props.children),
     };
 
+    this.deleteChild = this.deleteChild.bind(this);
+    this.viewRewards = this.viewRewards.bind(this);
     this.viewChild = this.viewChild.bind(this);
   }
 
@@ -29,13 +31,17 @@ class HomeContainer extends Component {
     console.log('test');
   }
 
+  deleteChild(childId) {
+    this.props.deleteChild(childId);
+  }
+
   viewChild(childId) {
     this.props.getEvents(childId);
     this.props.nav.push({name: 'VIEW_CHILD'});
   }
 
   render() {
-    const { viewChild, viewRewards, loading, nav } = this.props;
+    const { viewChild, viewRewards, deleteChild, loading, nav } = this.props;
 
     return (
       <View>
@@ -44,6 +50,7 @@ class HomeContainer extends Component {
           dataSource={this.state.dataSource}
           viewChild={this.viewChild}
           viewRewards={this.viewRewards}
+          deleteChild={this.deleteChild}
           nav={nav}
         />
       </View>

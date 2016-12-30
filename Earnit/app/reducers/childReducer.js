@@ -6,13 +6,15 @@ export default function childReducer(state = initialState.child, action) {
   case actions.CREATE_CHILD:
     return {
       ...state,
-      child: action.payload.child,
-      loading: false
+      name: action.payload.name,
+      age: action.payload.age,
+      loading: true
     };
   case actions.CREATE_CHILD_SUCCESS:
     return {
       ...state,
-      child: action.payload.child,
+      name: action.payload.child.name,
+      age: action.payload.child.age,
       loading: false
     };
   case actions.CREATE_CHILD_FAILURE:
@@ -25,7 +27,7 @@ export default function childReducer(state = initialState.child, action) {
     return {
       ...state,
       id: action.payload.id,
-      loading: false
+      loading: true
     };
   case actions.DELETE_CHILD_SUCCESS:
     return {
@@ -37,11 +39,6 @@ export default function childReducer(state = initialState.child, action) {
       ...state,
       error: action.payload.error,
       loading: false
-    };
-  case actions.CHILD_ATTEMPT:
-    return {
-      ...state,
-      loading: true
     };
   default:
     return state;

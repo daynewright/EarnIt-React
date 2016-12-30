@@ -33,13 +33,20 @@ function* createChild(action) {
 
 function* deleteChild(action) {
   try {
-    const data = yield call(fetch, `http://138.197.44.210/child/remove/${action.payload.id}`);
+    const data = yield call(fetch, `http://138.197.44.210/child/remove/${action.payload}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      });
     if (data.status === 400) {
       const error = yield data.json();
       yield put(actionCreators.failureDeleteChild(error));
     }
     else {
-      yield put(actionCreators.successDeleteChild());
+      yield put(actionCreators.successDeleteChild(action.payload.id));
     }
   }
   catch (error) {
