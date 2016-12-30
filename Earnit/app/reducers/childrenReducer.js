@@ -26,6 +26,12 @@ export default function childrenReducer(state = initialState.children, action) {
       ...state,
       childArray: [...state.childArray, action.payload.child]
     };
+  case actions.DELETE_CHILD_SUCCESS:
+    return {
+      ...state,
+      childArray: [...state.childArray.slice(0, state.childArray.indexOf(state.childArray.find(c => c.childId === action.payload))),
+                   ...state.childArray.slice(state.childArray.indexOf(state.childArray.find(c => c.childId === action.payload)) + 1)]
+    };
   default:
     return state;
   }

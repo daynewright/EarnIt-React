@@ -46,7 +46,7 @@ function* deleteChild(action) {
       yield put(actionCreators.failureDeleteChild(error));
     }
     else {
-      yield put(actionCreators.successDeleteChild(action.payload.id));
+      yield put(actionCreators.successDeleteChild(action.payload));
     }
   }
   catch (error) {

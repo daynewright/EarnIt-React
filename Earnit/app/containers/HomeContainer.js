@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView, View } from 'react-native';
+import { ListView, View, Alert } from 'react-native';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
 import HomeView from '../components/HomeView';
@@ -32,6 +32,7 @@ class HomeContainer extends Component {
   }
 
   deleteChild(childId) {
+    Alert.alert(null, `This child will be removed: ${childId}`);
     this.props.deleteChild(childId);
   }
 

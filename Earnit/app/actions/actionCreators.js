@@ -55,8 +55,8 @@ export function deleteChild(id) {
   return {type: actions.DELETE_CHILD, payload: id };
 }
 
-export function successDeleteChild() {
-  return { type: actions.DELETE_CHILD_SUCCESS };
+export function successDeleteChild(id) {
+  return { type: actions.DELETE_CHILD_SUCCESS, payload: id };
 }
 
 export function failureDeleteChild(error) {
