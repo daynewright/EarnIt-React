@@ -25,13 +25,17 @@ class HomeContainer extends Component {
     }
   }
 
+  viewRewards(childId) {
+    console.log('test');
+  }
+
   viewChild(childId) {
     this.props.getEvents(childId);
     this.props.nav.push({name: 'VIEW_CHILD'});
   }
 
   render() {
-    const { viewChild, loading, nav } = this.props;
+    const { viewChild, viewRewards, loading, nav } = this.props;
 
     return (
       <View>
@@ -39,6 +43,7 @@ class HomeContainer extends Component {
         <HomeView
           dataSource={this.state.dataSource}
           viewChild={this.viewChild}
+          viewRewards={this.viewRewards}
           nav={nav}
         />
       </View>

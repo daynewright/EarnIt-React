@@ -2,7 +2,7 @@ import React, { Component , PropTypes} from 'react';
 import { View, TouchableOpacity, Text, ListView, Image } from 'react-native';
 import styles from './styles/styles';
 import Swipeout from 'react-native-swipeout';
-import Header from './ListViewHeader';
+import Header from './headers/ChildViewHeader';
 
 class HomeView extends Component {
   constructor(props) {
@@ -23,10 +23,15 @@ class HomeView extends Component {
 
   renderRow(child) {
 
-    const { viewChild, removeChild } = this.props;
+    const { viewRewards, viewChild, removeChild } = this.props;
     const swipeoutBtnsRight = [
       {
-        text: 'View Child',
+        text: 'Earned Rewards',
+        backgroundColor: '#fabd3a',
+        onPress: () => { viewRewards(child.childId) }
+      },
+      {
+        text: 'Tasks',
         backgroundColor: '#75be79',
         onPress: () => { viewChild(child.childId) }
       }
