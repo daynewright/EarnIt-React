@@ -3,12 +3,6 @@ import  * as actions from '../actions/actionTypes';
 
 export default function eventsReducer(state = initialState.events, action) {
   switch (action.type) {
-  case action.CREATE_EVENT:
-    return {
-      ...state,
-      event: action.payload,
-      loading: true
-    };
   case actions.CREATE_EVENT_SUCCESS:
     return {
       ...state,

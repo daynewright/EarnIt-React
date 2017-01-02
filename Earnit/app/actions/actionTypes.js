@@ -39,6 +39,7 @@ export const GET_EVENTS_SUCCESS = 'GET_EVENTS_SUCCESS';
 export const GET_EVENTS_FAILURE = 'GET_EVENTS_FAILURE';
 
 export const RESET_EVENTS = 'RESET_EVENTS';
+export const SET_EVENT = 'SET_EVENT';
 // END::Event action types //
 
 // START::Reward action types //

@@ -124,6 +124,10 @@ export function getEventsFailure(error) {
 export function resetEvents() {
   return  { type: actions.RESET_EVENTS };
 }
+
+export function setEvent(event) {
+  return { type: actions.SET_EVENT, payload: event };
+}
 // END::Event action creators //
 
 // START::Reward action creators //

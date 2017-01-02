@@ -42,8 +42,10 @@ class TaskView extends Component {
     this.props.nav.push({ name: 'ADD_TASK'});
   }
 
-  addReward(id) {
-    Alert.alert('REWARD ADD', `the event id is ${id}`);
+  addReward(event) {
+    this.props.setEvent(event);
+    //this.props.nav.push({ name: 'ADD_REWARD'});
+    // Alert.alert('REWARD ADD', `the event id is ${id}`);
   }
 
   viewReward() {
@@ -77,7 +79,7 @@ class TaskView extends Component {
                 <TouchableHighlight style={styles.buttonPoint}><Text style={{fontSize: 15}, styles.smButtonText}>+ POINT</Text></TouchableHighlight>
                 {event.rewardId ?
                     <TouchableHighlight onPress={() => this.viewReward(event.rewardId)} style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>VIEW REWARD</Text></TouchableHighlight> :
-                    <TouchableHighlight onPress={() => this.addReward(event.eventId)} style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>ADD REWARD</Text></TouchableHighlight>
+                    <TouchableHighlight onPress={() => this.addReward(event)} style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>ADD REWARD</Text></TouchableHighlight>
                   }
                 <TouchableHighlight style={styles.buttonDelete}><Text style={{fontSize: 15}, styles.smButtonText}>DELETE</Text></TouchableHighlight>
               </View>
