@@ -9,6 +9,7 @@ import RegisterContainer from './app/containers/RegisterContainer';
 import HomeContainer from './app/containers/HomeContainer';
 import AddChildContainer from './app/containers/AddChildContainer';
 import AddTaskContainer from './app/containers/AddTaskContainer';
+import AddRewardContainer from './app/containers/AddRewardContainer';
 import TaskView from './app/components/TaskView';
 import store from './app/store/configureStore';
 

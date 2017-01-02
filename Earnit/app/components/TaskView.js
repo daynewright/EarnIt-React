@@ -44,7 +44,7 @@ class TaskView extends Component {
 
   addReward(event) {
     this.props.setEvent(event);
-    //this.props.nav.push({ name: 'ADD_REWARD'});
+    this.props.nav.push({ name: 'ADD_REWARD'});
     // Alert.alert('REWARD ADD', `the event id is ${id}`);
   }
 

@@ -4,7 +4,8 @@ const initialState = {
   children: { childArray: [ ] },
   event: {},
   events: { eventsArray: [ ] },
-  rewards: []
+  reward: {},
+  rewards: { rewardsArray: [ ] }
 };
 
 export default initialState;
