@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView, View, Text, TouchableHighlight } from 'react-native';
+import { ListView, View, Text, TouchableHighlight, Alert } from 'react-native';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
 import HomeView from '../components/HomeView';
@@ -13,6 +13,8 @@ class TaskView extends Component {
   constructor(props) {
     super(props);
 
+    this.addReward = this.addReward.bind(this);
+    this.viewReward = this.viewReward.bind(this);
     this.earnedRewards = this.earnedRewards.bind(this);
     this.back = this.back.bind(this);
     this.logOff = this.logOff.bind(this);
@@ -40,6 +42,14 @@ class TaskView extends Component {
     this.props.nav.push({ name: 'ADD_TASK'});
   }
 
+  addReward(id) {
+    Alert.alert('REWARD ADD', `the event id is ${id}`);
+  }
+
+  viewReward() {
+
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
       this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.events.eventsArray) });
@@ -47,7 +57,7 @@ class TaskView extends Component {
   }
 
   render() {
-    const { loading, events, reward } = this.props;
+    const { loading, events } = this.props;
 
     return (
       <View>
@@ -66,8 +76,8 @@ class TaskView extends Component {
               <View style={styles.buttonContainer}>
                 <TouchableHighlight style={styles.buttonPoint}><Text style={{fontSize: 15}, styles.smButtonText}>+ POINT</Text></TouchableHighlight>
                 {event.rewardId ?
-                    <TouchableHighlight style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>VIEW REWARD</Text></TouchableHighlight> :
-                    <TouchableHighlight style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>ADD REWARD</Text></TouchableHighlight>
+                    <TouchableHighlight onPress={() => this.viewReward(event.rewardId)} style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>VIEW REWARD</Text></TouchableHighlight> :
+                    <TouchableHighlight onPress={() => this.addReward(event.eventId)} style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>ADD REWARD</Text></TouchableHighlight>
                   }
                 <TouchableHighlight style={styles.buttonDelete}><Text style={{fontSize: 15}, styles.smButtonText}>DELETE</Text></TouchableHighlight>
               </View>

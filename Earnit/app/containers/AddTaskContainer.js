@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Alert } from 'react-native';
 import styles from '../components/styles/styles';
 import AddTaskForm from '../components/forms/AddTaskForm';
 import * as actionCreators from '../actions/actionCreators';
@@ -24,9 +25,13 @@ class AddTaskContainer extends Component {
   }
 
   _attemptAddTask() {
-    this.props.createEvent(this.state);
-    this.props.resetEvents();
-    this.props.nav.pop();
+    if (!this.state.title || !this.state.description) {
+      Alert.alert('ERROR', 'You need to complete the form.');
+    }
+    else {
+      this.props.createEvent(this.state);
+      this.props.nav.pop();
+    }
   }
 
   handleOnChangeDescription(text) {
