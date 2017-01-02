@@ -120,6 +120,10 @@ export function getEventsSuccess(data) {
 export function getEventsFailure(error) {
   return { type: actions.GET_EVENTS_FAILURE, payload: error };
 }
+
+export function resetEvents() {
+  return  { type: actions.RESET_EVENTS };
+}
 // END::Event action creators //
 
 // START::Reward action creators //

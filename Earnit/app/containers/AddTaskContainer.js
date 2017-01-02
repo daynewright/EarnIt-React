@@ -25,6 +25,7 @@ class AddTaskContainer extends Component {
 
   _attemptAddTask() {
     this.props.createEvent(this.state);
+    this.props.resetEvents();
     this.props.nav.pop();
   }
 

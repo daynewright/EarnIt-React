@@ -23,7 +23,7 @@ class AddTaskContainer extends Component {
   }
 
   _attemptAddReward() {
-    // this.props.createReward(this.state);
+    //this.props.createReward(this.state);
     this.props.nav.push({name: 'ADD_REWARD'});
   }
 
