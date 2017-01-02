@@ -14,9 +14,7 @@ function* createEvent(action) {
       body: JSON.stringify({
         Name: action.payload.name,
         Description: action.payload.description,
-        Type: action.payload.type,
-        Frequency: action.payload.frequency,
-        AutoRefresh: action.payload.autoRefresh
+        Type: action.payload.type
       })
     });
     if (data.status === 400) {

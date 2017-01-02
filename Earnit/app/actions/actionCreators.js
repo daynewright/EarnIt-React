@@ -67,6 +67,10 @@ export function attemptingChild() {
   return { type: actions.CHILD_ATTEMPT };
 }
 
+export function setChild(child) {
+  return { type: actions.SET_CHILD, payload: child };
+}
+
 export function getChildren() {
   return { type: actions.GET_CHILDREN };
 }
@@ -113,8 +117,8 @@ export function getEventsSuccess(data) {
   return { type: actions.GET_EVENTS_SUCCESS, payload: data.events };
 }
 
-export function getEventsFailure() {
-  return { type: actions.GET_EVENTS_FAILURE };
+export function getEventsFailure(error) {
+  return { type: actions.GET_EVENTS_FAILURE, payload: error };
 }
 // END::Event action creators //
 

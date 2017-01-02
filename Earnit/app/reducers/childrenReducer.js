@@ -12,6 +12,7 @@ export default function childrenReducer(state = initialState.children, action) {
     return {
       ...state,
       childArray: action.payload.children,
+      error: null,
       loading: false
     };
   case actions.GET_CHILDREN_FAILURE:
@@ -24,7 +25,9 @@ export default function childrenReducer(state = initialState.children, action) {
   case actions.CREATE_CHILD_SUCCESS:
     return {
       ...state,
-      childArray: [...state.childArray, action.payload.child]
+      childArray: [...state.childArray, action.payload.child],
+      error: null,
+      loading: false
     };
   case actions.DELETE_CHILD_SUCCESS:
     return {

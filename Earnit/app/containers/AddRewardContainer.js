@@ -12,8 +12,7 @@ class AddTaskContainer extends Component {
     this.state = {
       title: '',
       description: '',
-      type: 'Task',
-      childId: props.child.childId
+      pointsNeeded: ''
     };
     this._attemptAddTask = this._attemptAddTask.bind(this);
     this.back = this.back.bind(this);
@@ -23,15 +22,9 @@ class AddTaskContainer extends Component {
     this.dismissKeyboard = require('dismissKeyboard');
   }
 
-  _attemptAddTask() {
-    this.props.createEvent(this.state);
-    this.props.nav.pop();
-  }
-
-  handleOnChangeDescription(text) {
-    this.setState({
-      description: text
-    });
+  _attemptAddReward() {
+    // this.props.createReward(this.state);
+    this.props.nav.push({name: 'ADD_REWARD'});
   }
 
   handleOnChangeTitle(text) {
@@ -40,9 +33,21 @@ class AddTaskContainer extends Component {
     });
   }
 
+  handleOnChangeDescription(text) {
+    this.setState({
+      description: text
+    });
+  }
+
+  handleOnChangePointsNeeded(text) {
+    this.setState({
+      pointsNeeded: text
+    });
+  }
+
   back() {
     this.dismissKeyboard();
-    this.props.nav.pop({name: 'ADD_TASK'});
+    this.props.nav.resetTo({name: 'VIEW_CHILD'});
   }
 
   handleOnClick() {
@@ -51,7 +56,7 @@ class AddTaskContainer extends Component {
 
   render() {
     return (
-      <AddTaskForm
+      <AddRewardForm
         back={this.back}
         onSubmit={this.handleOnClick}
         onChangeName={this.handleOnChangeTitle}
@@ -63,8 +68,7 @@ class AddTaskContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    event: state.task,
-    child: state.child
+    event: state.task
   };
 };
 
