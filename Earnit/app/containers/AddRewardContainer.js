@@ -24,7 +24,8 @@ class AddRewardContainer extends Component {
   }
 
   _attemptAddReward() {
-    this.props.nav.push({name: 'ADD_REWARD'});
+    console.log(`*********** Need to add a reward for event id ${this.props.event.eventId}`)
+    this.props.nav.pop();
   }
 
   handleOnChangeName(text) {

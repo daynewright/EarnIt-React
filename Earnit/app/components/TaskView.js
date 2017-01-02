@@ -35,7 +35,7 @@ class TaskView extends Component {
   }
 
   back() {
-    this.props.nav.pop();
+    this.props.nav.resetTo({name: 'HOME'});
   }
 
   addTask() {
@@ -45,7 +45,6 @@ class TaskView extends Component {
   addReward(event) {
     this.props.setEvent(event);
     this.props.nav.push({ name: 'ADD_REWARD'});
-    // Alert.alert('REWARD ADD', `the event id is ${id}`);
   }
 
   viewReward() {
