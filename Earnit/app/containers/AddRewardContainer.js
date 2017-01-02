@@ -2,34 +2,34 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
-import AddTaskForm from '../components/forms/AddTaskForm';
+import AddRewardForm from '../components/forms/AddRewardForm';
 import * as actionCreators from '../actions/actionCreators';
 
-class AddTaskContainer extends Component {
+class AddRewardContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: '',
+      name: '',
       description: '',
       pointsNeeded: ''
     };
-    this._attemptAddTask = this._attemptAddTask.bind(this);
+    this._attemptAddReward = this._attemptAddReward.bind(this);
     this.back = this.back.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
-    this.handleOnChangeTitle = this.handleOnChangeTitle.bind(this);
+    this.handleOnChangeName = this.handleOnChangeName.bind(this);
     this.handleOnChangeDescription = this.handleOnChangeDescription.bind(this);
+    this.handleOnChangePointsNeeded = this.handleOnChangePointsNeeded.bind(this);
     this.dismissKeyboard = require('dismissKeyboard');
   }
 
   _attemptAddReward() {
-    // this.props.createReward(this.state);
     this.props.nav.push({name: 'ADD_REWARD'});
   }
 
-  handleOnChangeTitle(text) {
+  handleOnChangeName(text) {
     this.setState({
-      title: text
+      name: text
     });
   }
 
@@ -51,7 +51,7 @@ class AddTaskContainer extends Component {
   }
 
   handleOnClick() {
-    this._attemptAddTask();
+    this._attemptAddReward();
   }
 
   render() {
@@ -59,8 +59,9 @@ class AddTaskContainer extends Component {
       <AddRewardForm
         back={this.back}
         onSubmit={this.handleOnClick}
-        onChangeName={this.handleOnChangeTitle}
+        onChangeName={this.handleOnChangeName}
         onChangeDescription={this.handleOnChangeDescription}
+        onChangePointsNeeded={this.handleOnChangePointsNeeded}
         />
     );
   }
@@ -68,10 +69,11 @@ class AddTaskContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    event: state.task
+    event: state.event,
+    reward: state.reward
   };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTaskContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AddRewardContainer);
