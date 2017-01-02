@@ -6,13 +6,20 @@ export default function eventsReducer(state = initialState.events, action) {
   case action.CREATE_EVENT:
     return {
       ...state,
-      event: action.payload.event,
+      event: action.payload,
       loading: true
     };
   case actions.CREATE_EVENT_SUCCESS:
     return {
       ...state,
-      event: action.payload.event,
+      eventsArray: [...state.eventsArray,
+        {
+          eventID: action.payload.newEvent.eventId,
+          name: action.payload.newEvent.name,
+          description: action.payload.newEvent.description,
+          imageURL: action.payload.newEvent.imageURL,
+          isActive: action.payload.newEvent.isActive
+        }],
       loading: false
     };
   case actions.CREATE_EVENT_FAILURE:

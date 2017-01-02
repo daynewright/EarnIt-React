@@ -13,7 +13,7 @@ class AddTaskContainer extends Component {
       title: '',
       description: '',
       type: 'Task',
-      childId: props.child.childId
+      childId: props.child.id
     };
     this._attemptAddTask = this._attemptAddTask.bind(this);
     this.back = this.back.bind(this);
@@ -54,7 +54,7 @@ class AddTaskContainer extends Component {
       <AddTaskForm
         back={this.back}
         onSubmit={this.handleOnClick}
-        onChangeName={this.handleOnChangeTitle}
+        onChangeTitle={this.handleOnChangeTitle}
         onChangeDescription={this.handleOnChangeDescription}
         />
     );
