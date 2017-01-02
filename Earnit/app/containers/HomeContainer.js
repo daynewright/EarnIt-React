@@ -13,25 +13,37 @@ class HomeContainer extends Component {
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(props.children),
+      dataSource: ds.cloneWithRows(props.children.childArray),
     };
 
+    this.deleteChild = this.deleteChild.bind(this);
+    this.viewRewards = this.viewRewards.bind(this);
     this.viewChild = this.viewChild.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
-      this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.children) });
+      this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.children.childArray) });
     }
   }
 
-  viewChild(childId) {
-    this.props.getEvents(childId);
+  viewRewards(childId) {
+    console.log('test');
+  }
+
+  deleteChild(childId) {
+    this.props.deleteChild(childId);
+    this.props.setChild({name: null, age: null, id: null});
+  }
+
+  viewChild(child) {
+    this.props.setChild(child);
+    this.props.getEvents(child.childId);
     this.props.nav.push({name: 'VIEW_CHILD'});
   }
 
   render() {
-    const { viewChild, loading, nav } = this.props;
+    const { viewChild, viewRewards, deleteChild, loading, nav, children } = this.props;
 
     return (
       <View>
@@ -39,7 +51,10 @@ class HomeContainer extends Component {
         <HomeView
           dataSource={this.state.dataSource}
           viewChild={this.viewChild}
+          viewRewards={this.viewRewards}
+          deleteChild={this.deleteChild}
           nav={nav}
+          children={children}
         />
       </View>
     );
@@ -48,7 +63,7 @@ class HomeContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    children: state.children.childArray,
+    children: state.children,
     loading: state.children.loading
   };
 };

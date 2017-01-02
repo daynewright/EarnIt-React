@@ -6,16 +6,38 @@ import styles from '../components/styles/styles';
 import HomeView from '../components/HomeView';
 import * as actionCreators from '../actions/actionCreators';
 import Spinner from 'react-native-loading-spinner-overlay';
+import Header from './headers/TaskViewHeader';
 
 
-class ViewChildContainer extends Component {
+class TaskView extends Component {
   constructor(props) {
     super(props);
+
+    this.earnedRewards = this.earnedRewards.bind(this);
+    this.back = this.back.bind(this);
+    this.logOff = this.logOff.bind(this);
+    this.addTask = this.addTask.bind(this);
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows(props.events),
     };
+  }
+
+  logOff() {
+    console.log('logoff');
+  };
+
+  earnedRewards() {
+    console.log('earnedRewards');
+  }
+
+  back() {
+    this.props.nav.pop();
+  }
+
+  addTask() {
+    this.props.nav.push({ name: 'ADD_TASK'});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,6 +65,8 @@ class ViewChildContainer extends Component {
             </View>
           </View>
         )}
+        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+        renderHeader={() => <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>}
       />
       </View>
     );
@@ -59,4 +83,4 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewChildContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskView);

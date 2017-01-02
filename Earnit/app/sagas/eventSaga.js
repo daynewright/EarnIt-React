@@ -12,11 +12,10 @@ function* createEvent(action) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        Name: action.payload.name,
+        Name: action.payload.title,
         Description: action.payload.description,
         Type: action.payload.type,
-        Frequency: action.payload.frequency,
-        AutoRefresh: action.payload.autoRefresh
+        ChildId: action.payload.childId
       })
     });
     if (data.status === 400) {

@@ -55,8 +55,8 @@ export function deleteChild(id) {
   return {type: actions.DELETE_CHILD, payload: id };
 }
 
-export function successDeleteChild() {
-  return { type: actions.DELETE_CHILD_SUCCESS };
+export function successDeleteChild(id) {
+  return { type: actions.DELETE_CHILD_SUCCESS, payload: id };
 }
 
 export function failureDeleteChild(error) {
@@ -65,6 +65,10 @@ export function failureDeleteChild(error) {
 
 export function attemptingChild() {
   return { type: actions.CHILD_ATTEMPT };
+}
+
+export function setChild(child) {
+  return { type: actions.SET_CHILD, payload: child };
 }
 
 export function getChildren() {
@@ -113,8 +117,8 @@ export function getEventsSuccess(data) {
   return { type: actions.GET_EVENTS_SUCCESS, payload: data.events };
 }
 
-export function getEventsFailure() {
-  return { type: actions.GET_EVENTS_FAILURE };
+export function getEventsFailure(error) {
+  return { type: actions.GET_EVENTS_FAILURE, payload: error };
 }
 // END::Event action creators //
 

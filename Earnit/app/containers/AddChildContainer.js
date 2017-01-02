@@ -22,8 +22,8 @@ class AddChildContainer extends Component {
   }
 
   _attemptAddChild() {
-    this.props.createChild(this.state.child);
-    this.props.nav.pop({name: 'ADD_CHILD'});
+    this.props.createChild(this.state);
+    this.dismissKeyboard();
   }
 
   handleOnChangeAge(text) {
