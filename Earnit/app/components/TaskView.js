@@ -7,6 +7,7 @@ import HomeView from '../components/HomeView';
 import * as actionCreators from '../actions/actionCreators';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Header from './headers/TaskViewHeader';
+import Swipeout from 'react-native-swipeout';
 
 
 class TaskView extends Component {
@@ -19,6 +20,7 @@ class TaskView extends Component {
     this.back = this.back.bind(this);
     this.logOff = this.logOff.bind(this);
     this.addTask = this.addTask.bind(this);
+    this.renderRow = this.renderRow.bind(this);
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
@@ -57,6 +59,54 @@ class TaskView extends Component {
     }
   }
 
+  renderRow(event) {
+    const { addReward, viewReward } = this.props;
+
+    const swipeoutAddBtnsRight = [
+      {
+        text: '+ Reward',
+        backgroundColor: '#fabd3a',
+        onPress: () => { addReward(event.eventId) }
+      }
+    ];
+    const swipeoutViewBtnsRight = [
+      {
+        text: '+ Point',
+        backgroundColor: '#75be79',
+        onPress: () => { addReward(event) }
+      },
+      {
+        text: 'View Reward',
+        backgroundColor: '#61afef',
+        onPress: () => { viewReward(event.rewardId) }
+      }
+    ];
+    const swipeoutBtnsLeft = [
+      {
+        text: 'Delete',
+        backgroundColor: '#d13b2e',
+        onPress: () => { viewReward(event.eventId) }
+      }
+    ];
+
+    return (
+      <Swipeout
+        right={event.rewardId ? swipeoutViewBtnsRight : swipeoutAddBtnsRight }
+        left={swipeoutBtnsLeft}
+        >
+          <View style={{flex: 1, backgroundColor: '#fff', paddingLeft: 15, paddingBottom: 10, paddingTop: 10}}>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'column'}}>
+                  <Text style={{fontSize: 20, fontWeight: '900'}}>{event.name}</Text>
+                    <Text style={{fontStyle: 'italic'}}>{event.description}</Text>
+                    <Text style={{fontWeight: '600'}}>{event.rewardId ? '0/10 pts' : '(slide to add reward)'}</Text>
+                </View>
+              </View>
+          </View>
+      </Swipeout>
+    );
+  }
+
   render() {
     const { loading, events } = this.props;
 
@@ -70,20 +120,7 @@ class TaskView extends Component {
         </View> :
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(event)=>  (
-            <View style={{flex: 1, borderBottomColor: '#757575', borderBottomWidth: 1, paddingLeft: 5, paddingBottom: 10, paddingTop: 10}}>
-              <Text style={{fontSize: 20, fontWeight: '900'}}>{event.name}</Text>
-              <Text>{event.description}</Text>
-              <View style={styles.buttonContainer}>
-                <TouchableHighlight style={styles.buttonPoint}><Text style={{fontSize: 15}, styles.smButtonText}>+ POINT</Text></TouchableHighlight>
-                {event.rewardId ?
-                    <TouchableHighlight onPress={() => this.viewReward(event.rewardId)} style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>VIEW REWARD</Text></TouchableHighlight> :
-                    <TouchableHighlight onPress={() => this.addReward(event)} style={styles.buttonReward}><Text style={{fontSize: 15}, styles.smButtonText}>ADD REWARD</Text></TouchableHighlight>
-                  }
-                <TouchableHighlight style={styles.buttonDelete}><Text style={{fontSize: 15}, styles.smButtonText}>DELETE</Text></TouchableHighlight>
-              </View>
-            </View>
-          )}
+          renderRow={this.renderRow}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
           renderHeader={() => <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>}
         />
@@ -91,7 +128,6 @@ class TaskView extends Component {
       </View>
     );
   }
-
 }
 
 const mapStateToProps = function(state) {

@@ -5,7 +5,7 @@ import { View, TouchableOpacity, Text } from 'react-native';
 const Header = ({back, addTask, earnedRewards, logOff}) => (
   <View style={styles.buttonContainer}>
     <TouchableOpacity style={styles.buttonBack} onPress={back}>
-      <Text style={styles.smButtonText}>{'<'}</Text>
+      <Text style={styles.smButtonText}>{'< BACK'}</Text>
     </TouchableOpacity>
     <TouchableOpacity style={styles.buttonPoint} onPress={addTask}>
       <Text style={styles.smButtonText}>ADD TASK</Text>
