@@ -14,11 +14,12 @@ export default function rewardReducer(state = initialState.reward, action) {
   case actions.CREATE_REWARD_SUCCESS:
     return {
       ...state,
-      name: action.payload.Name,
-      description: action.payload.Description,
-      imageURL: action.payload.ImageURL,
-      eventId: action.payload.EventId,
-      pointsNeeded: action.payload.PointsNeeded,
+      name: action.payload.data.reward.name,
+      description: action.payload.data.reward.description,
+      imageURL: action.payload.data.reward.imageURL,
+      eventId: action.payload.data.eventId,
+      rewardId: action.payload.data.reward.rewardId,
+      pointsNeeded: action.payload.data.reward.pointsNeeded,
       failure: false,
       error: null,
       loading: false

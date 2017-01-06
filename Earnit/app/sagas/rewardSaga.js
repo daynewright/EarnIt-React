@@ -23,12 +23,12 @@ function* createReward(action) {
       yield put(actionCreators.failureCreateReward(error));
     }
     else {
-      const child = yield data.json();
+      const reward = yield data.json();
       yield put(actionCreators.successCreateReward(reward));
     }
   }
   catch (error) {
-    yield put(actionCreators.failureCreateChild(error));
+    yield put(actionCreators.failureCreateReward(error));
   }
 }
 
