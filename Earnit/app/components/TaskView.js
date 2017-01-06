@@ -14,6 +14,7 @@ class TaskView extends Component {
   constructor(props) {
     super(props);
 
+    //this.addPoint = this.addPoint.bind(this);
     this.addReward = this.addReward.bind(this);
     this.viewReward = this.viewReward.bind(this);
     this.earnedRewards = this.earnedRewards.bind(this);
@@ -33,7 +34,7 @@ class TaskView extends Component {
   };
 
   earnedRewards() {
-    console.log('earnedRewards');
+    // redirect to earnedRewards view
   }
 
   back() {
@@ -60,20 +61,20 @@ class TaskView extends Component {
   }
 
   renderRow(event) {
-    const { addReward, viewReward } = this.props;
+    const { addReward, viewReward } = this;
 
     const swipeoutAddBtnsRight = [
       {
         text: '+ Reward',
         backgroundColor: '#fabd3a',
-        onPress: () => { addReward(event.eventId) }
+        onPress: () => { addReward(event) }
       }
     ];
     const swipeoutViewBtnsRight = [
       {
         text: '+ Point',
         backgroundColor: '#75be79',
-        onPress: () => { addReward(event) }
+        onPress: () => { addPoint(event) }
       },
       {
         text: 'View Reward',

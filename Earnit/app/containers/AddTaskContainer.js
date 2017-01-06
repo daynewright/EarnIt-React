@@ -16,6 +16,7 @@ class AddTaskContainer extends Component {
       type: 'Task',
       childId: props.child.id
     };
+
     this._attemptAddTask = this._attemptAddTask.bind(this);
     this.back = this.back.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -30,6 +31,7 @@ class AddTaskContainer extends Component {
     }
     else {
       this.props.createEvent(this.state);
+      this.props.setEvent(this.state);
       this.props.nav.pop();
     }
   }

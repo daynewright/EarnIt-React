@@ -43,16 +43,17 @@ class HomeContainer extends Component {
   }
 
   render() {
-    const { viewChild, viewRewards, deleteChild, loading, nav, children } = this.props;
+    const { loading, nav, children } = this.props;
+    const { viewChild, viewRewards, deleteChild } = this;
 
     return (
       <View>
         <Spinner visible={loading} />
         <HomeView
           dataSource={this.state.dataSource}
-          viewChild={this.viewChild}
-          viewRewards={this.viewRewards}
-          deleteChild={this.deleteChild}
+          viewChild={viewChild}
+          viewRewards={viewRewards}
+          deleteChild={deleteChild}
           nav={nav}
           children={children}
         />

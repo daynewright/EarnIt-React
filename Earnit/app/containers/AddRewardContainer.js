@@ -24,8 +24,14 @@ class AddRewardContainer extends Component {
   }
 
   _attemptAddReward() {
-    console.log(`*********** Need to add a reward for event id ${this.props.event.eventId}`)
-    this.props.nav.pop();
+    if (!this.state.name || !this.state.description || !this.state.pointsNeeded) {
+      Alert.alert('ERROR', 'You need to fill out all fields for the reward.');
+    }
+    else {
+      console.log(`*********** Need to add a reward for event id ${this.props.event.eventId}`);
+      this.props.createReward({...this.state, eventId: this.props.event.eventId});
+      this.props.nav.pop();
+    }
   }
 
   handleOnChangeName(text) {
