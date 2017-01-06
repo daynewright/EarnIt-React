@@ -77,7 +77,7 @@ class TaskView extends Component {
         onPress: () => { addPoint(event) }
       },
       {
-        text: 'View Reward',
+        text: 'View  Reward',
         backgroundColor: '#61afef',
         onPress: () => { viewReward(event.rewardId) }
       }
