@@ -18,6 +18,11 @@ export default function eventsReducer(state = initialState.events, action) {
       error: null,
       loading: false
     };
+  case actions.CREATE_REWARD_SUCCESS:
+    return {
+      ...state,
+      eventsArray: state.eventsArray.map((event, i) => event.eventId === action.payload.data.eventId ? {...event, rewardId: action.payload.data.reward.rewardId } : event )
+    };
   case actions.CREATE_EVENT_FAILURE:
     return {
       ...state,
