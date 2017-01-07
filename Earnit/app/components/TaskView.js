@@ -100,7 +100,7 @@ class TaskView extends Component {
                 <View style={{flexDirection: 'column'}}>
                   <Text style={{fontSize: 20, fontWeight: '900'}}>{event.name}</Text>
                     <Text style={{fontStyle: 'italic'}}>{event.description}</Text>
-                    <Text style={{fontWeight: '600'}}>{event.rewardId ? '0/10 pts' : '(slide to add reward)'}</Text>
+                    <Text style={{fontWeight: '600'}}>{event.rewardId ? `0/${event.reward.pointsNeeded} pts` : '(slide to add reward)'}</Text>
                 </View>
               </View>
           </View>
