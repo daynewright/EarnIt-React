@@ -143,6 +143,22 @@ export function failureCreateReward(error) {
   return { type: actions.CREATE_REWARD_FAILURE, payload: error };
 }
 
+export function getReward(id) {
+  return { type: actions.GET_REWARD, payload: id };
+}
+
+export function getRewardSuccess(reward) {
+  return { type: actions.GET_REWARD_SUCCESS, payload: reward };
+}
+
+export function getRewardFailure(error) {
+  return { type: actions.GET_REWARD_FAILURE, payload: error };
+}
+
+export function resetReward() {
+  return { type: actions.RESET_REWARDS };
+}
+
 export function deleteReward(id) {
   return {type: actions.DELETE_REWARD, payload: id };
 }

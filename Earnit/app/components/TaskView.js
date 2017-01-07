@@ -8,13 +8,14 @@ import * as actionCreators from '../actions/actionCreators';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Header from './headers/TaskViewHeader';
 import Swipeout from 'react-native-swipeout';
+import CombineArraysSelector from '../selectors/eventsRewards';
 
 
 class TaskView extends Component {
   constructor(props) {
     super(props);
 
-    //this.addPoint = this.addPoint.bind(this);
+    // this.addPoint = this.addPoint.bind(this);
     this.addReward = this.addReward.bind(this);
     this.viewReward = this.viewReward.bind(this);
     this.earnedRewards = this.earnedRewards.bind(this);
@@ -30,6 +31,7 @@ class TaskView extends Component {
   }
 
   logOff() {
+    console.log('******', this.props.events);
     console.log('logoff');
   };
 
@@ -54,8 +56,13 @@ class TaskView extends Component {
 
   }
 
+
+  //   this.props.events.eventsArray.forEach(event => this.props.getReward(event.eventId));
+  // }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
+      nextProps.events.eventsArray.forEach(event => this.props.getReward(event.eventId));
       this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.events.eventsArray) });
     }
   }
@@ -131,9 +138,9 @@ class TaskView extends Component {
   }
 }
 
-const mapStateToProps = function(state) {
+const mapStateToProps = state => {
   return {
-    events: state.events,
+    events: CombineArraysSelector(state),
     loading: state.events.loading,
   };
 };

@@ -3,7 +3,7 @@ import { watchSignInRequest, watchRegisterRequest } from './userSaga';
 import { watchGetEvents, watchCreateEvent } from './eventSaga';
 import { watchGetChildren } from './childrenSaga';
 import { watchCreateChild, watchDeleteChild } from './childSaga';
-import { watchCreateReward } from './rewardSaga';
+import { watchCreateReward, watchGetReward } from './rewardSaga';
 
 function startSagas(...sagas) {
   return function* rootSaga() {
@@ -19,7 +19,8 @@ const rootSaga = startSagas(
   watchDeleteChild,
   watchGetEvents,
   watchCreateEvent,
-  watchCreateReward
+  watchCreateReward,
+  watchGetReward
 );
 
 export default rootSaga;

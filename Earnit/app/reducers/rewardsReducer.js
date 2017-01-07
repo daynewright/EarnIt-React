@@ -12,7 +12,8 @@ export default function rewardsReducer(state = initialState.rewards, action) {
           rewardId: action.payload.data.reward.rewardId,
           name: action.payload.data.reward.name,
           description: action.payload.data.reward.description,
-          imageURL: action.payload.data.reward.imageURL
+          imageURL: action.payload.data.reward.imageURL,
+          pointsNeeded: action.payload.data.reward.pointsNeeded
         }],
       error: null,
       loading: false
@@ -23,24 +24,24 @@ export default function rewardsReducer(state = initialState.rewards, action) {
       error: action.payload.error,
       loading: false
     };
-  case actions.GET_REWARDS:
+  case actions.GET_REWARD:
     return {
       ...state,
-      rewardsArray: [],
       error: null,
       loading: true
     };
-  case actions.RESET_REWARDS:
+  case actions.GET_REWARD_SUCCESS:
     return {
       ...state,
-      rewardsArray: [],
-      error: null,
-      loading: false
-    };
-  case actions.GET_REWARDS_SUCCESS:
-    return {
-      ...state,
-      rewardsArray: action.payload,
+      rewardsArray: [...state.rewardsArray,
+        {
+          eventId: action.payload.eventId,
+          rewardId: action.payload.rewardId,
+          name: action.payload.name,
+          description: action.payload.description,
+          imageURL: action.payload.ImageURL,
+          pointsNeeded: action.payload.pointsNeeded
+        }],
       error: null,
       loading: false
     };
@@ -49,6 +50,13 @@ export default function rewardsReducer(state = initialState.rewards, action) {
       ...state,
       rewardsArray: [],
       error: action.payload.error,
+      loading: false
+    };
+  case actions.RESET_REWARDS:
+    return {
+      ...state,
+      rewardsArray: [],
+      error: null,
       loading: false
     };
   default:
