@@ -50,8 +50,9 @@ class TaskView extends Component {
     this.props.nav.push({ name: 'ADD_REWARD'});
   }
 
-  viewReward() {
-
+  viewReward(event) {
+    this.props.setEvent(event);
+    this.props.nav.push({ name: 'VIEW_REWARD'});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -79,7 +80,7 @@ class TaskView extends Component {
       {
         text: 'View Reward',
         backgroundColor: '#61afef',
-        onPress: () => { viewReward(event.rewardId) }
+        onPress: () => { viewReward(event) }
       }
     ];
     const swipeoutBtnsLeft = [

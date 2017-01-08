@@ -36,6 +36,25 @@ export default function rewardReducer(state = initialState.reward, action) {
       error: action.payload,
       loading: false
     };
+  case actions.GET_REWARD:
+    return {
+      ...state,
+      error: null,
+      loading: true
+    };
+  case action.GET_REWARD_SUCCESS:
+    return {
+      ...state,
+      ...action.payload,
+      error: null,
+      loading: false
+    };
+  case action.GET_REWARD_FAILURE:
+    return {
+      ...state,
+      error: action.payload.error,
+      loading: false
+    };
   default:
     return state;
   };

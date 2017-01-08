@@ -32,34 +32,7 @@ function* createReward(action) {
   }
 }
 
-// function* deleteChild(action) {
-//   try {
-//     const data = yield call(fetch, `http://138.197.44.210/child/remove/${action.payload}`,
-//       {
-//         method: 'DELETE',
-//         headers: {
-//           'Accept': 'application/json',
-//           'Content-Type': 'application/json',
-//         }
-//       });
-//     if (data.status === 400) {
-//       const error = yield data.json();
-//       yield put(actionCreators.failureDeleteChild(error));
-//     }
-//     else {
-//       yield put(actionCreators.successDeleteChild(action.payload));
-//     }
-//   }
-//   catch (error) {
-//     yield put(actionCreators.failureDeleteChild(error));
-//   }
-// }
-
 // Export watch functions for generators //
 export function* watchCreateReward() {
   yield* takeEvery(actions.CREATE_REWARD, createReward);
 }
-
-// export function* watchDeleteChild() {
-//   yield* takeEvery(actions.DELETE_CHILD, deleteChild);
-// }

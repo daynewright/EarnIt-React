@@ -30,6 +30,7 @@ class AddRewardContainer extends Component {
     }
     else {
       this.props.createReward({...this.state, eventId: this.props.event.eventId});
+      this.props.getEvents(this.props.child.id);
       this.props.nav.pop();
     }
   }
@@ -77,7 +78,8 @@ class AddRewardContainer extends Component {
 const mapStateToProps = function(state) {
   return {
     event: state.event,
-    reward: state.reward
+    reward: state.reward,
+    child: state.child
   };
 };
 
