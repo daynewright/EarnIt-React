@@ -29,6 +29,11 @@ class TaskView extends Component {
     };
   }
 
+  addPoint(event) {
+    this.props.createPoint(event.eventId);
+    // build point reducer and add pointsEarned to events array
+  }
+
   logOff() {
     console.log('logoff');
   };
@@ -87,12 +92,13 @@ class TaskView extends Component {
       {
         text: 'Delete',
         backgroundColor: '#d13b2e',
-        onPress: () => { viewReward(event.eventId) }
+        onPress: () => { console.log('Delete task') }
       }
     ];
 
     return (
       <Swipeout
+        autoClose={true}
         right={event.rewardId ? swipeoutViewBtnsRight : swipeoutAddBtnsRight }
         left={swipeoutBtnsLeft}
         >
@@ -101,7 +107,7 @@ class TaskView extends Component {
                 <View style={{flexDirection: 'column'}}>
                   <Text style={{fontSize: 20, fontWeight: '900'}}>{event.name}</Text>
                     <Text style={{fontStyle: 'italic'}}>{event.description}</Text>
-                    <Text style={{fontWeight: '600'}}>{event.rewardId ? `0/${event.reward.pointsNeeded} pts` : '(slide to add reward)'}</Text>
+                    <Text style={{fontWeight: '600'}}> {event.rewardId ? `0/${event.reward.pointsNeeded} pts` : '(slide to add reward)'} </Text>
                 </View>
               </View>
           </View>

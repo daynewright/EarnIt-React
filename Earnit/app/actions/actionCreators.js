@@ -161,8 +161,8 @@ export function attemptingReward() {
 // END::Reward action creators //
 
 // START::RewardPoint action creators //
-export function createPoint(point) {
-  return { type: actions.CREATE_POINT, payload: point };
+export function createPoint(id) {
+  return { type: actions.CREATE_POINT, payload: id };
 }
 
 export function successCreatePoint(data) {
@@ -173,8 +173,16 @@ export function failureCreatePoint(error) {
   return { type: actions.CREATE_POINT_FAILURE, payload: error };
 }
 
-export function attemptingCreatePoint() {
-  return { type: actions.CREATE_POINT_ATTEMPT };
+export function getPoints(id) {
+  return { type: actions.GET_POINTS, payload: id };
+}
+
+export function getPointsSuccess(points) {
+  return { type: actions.GET_POINTS_SUCCESS, payload: points };
+}
+
+export function getPointsFailure(error) {
+  return { type: actions.GET_POINTS_FAILURE, payload: error };
 }
 // END::RewardPoint action creators //
 

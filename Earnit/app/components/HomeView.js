@@ -46,6 +46,7 @@ class HomeView extends Component {
 
     return (
       <Swipeout
+        autoClose={true}
         right={swipeoutBtnsRight}
         left={swipeoutBtnsLeft}
         >
