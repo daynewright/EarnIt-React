@@ -112,7 +112,20 @@ module.exports = StyleSheet.create({
     color: '#FAFAFA',
     textAlign: 'center',
   },
-  list: {
-    flex: 1
+  center: {
+    textAlign: 'center',
+    color: '#656656'
+  },
+  name: {
+    fontSize: 30,
+    fontWeight: '900'
+  },
+  description: {
+    fontSize: 18,
+    fontStyle: 'italic'
+  },
+  points: {
+    fontSize: 20,
+    fontWeight: '700'
   }
 });

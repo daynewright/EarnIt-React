@@ -1,5 +1,4 @@
 import * as actions from './actionTypes';
-import { Alert } from 'react-native';
 
 // START::Registration or Login action creators //
 export function loginUser(user) {
@@ -133,7 +132,6 @@ export function setEvent(event) {
 
 // START::Reward action creators //
 export function createReward(reward) {
-  Alert.alert('',JSON.stringify(reward));
   return { type: actions.CREATE_REWARD, payload: reward };
 }
 
