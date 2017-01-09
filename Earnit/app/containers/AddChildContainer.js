@@ -13,17 +13,11 @@ class AddChildContainer extends Component {
       name: '',
       age: ''
     };
-    this._attemptAddChild = this._attemptAddChild.bind(this);
     this.back = this.back.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleOnChangeName = this.handleOnChangeName.bind(this);
     this.handleOnChangeAge = this.handleOnChangeAge.bind(this);
     this.dismissKeyboard = require('dismissKeyboard');
-  }
-
-  _attemptAddChild() {
-    this.props.createChild(this.state);
-    this.dismissKeyboard();
   }
 
   handleOnChangeAge(text) {
@@ -44,7 +38,8 @@ class AddChildContainer extends Component {
   }
 
   handleOnClick() {
-    this._attemptAddChild();
+    this.dismissKeyboard();
+    this.props.createChild(this.state);
   }
 
   render() {

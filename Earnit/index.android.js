@@ -10,6 +10,7 @@ import HomeContainer from './app/containers/HomeContainer';
 import AddChildContainer from './app/containers/AddChildContainer';
 import AddTaskContainer from './app/containers/AddTaskContainer';
 import AddRewardContainer from './app/containers/AddRewardContainer';
+import RewardContainer from './app/containers/RewardContainer';
 import TaskView from './app/components/TaskView';
 import store from './app/store/configureStore';
 
@@ -88,7 +89,7 @@ export default class Earnit extends Component {
           <Image
              style={{width: 150, height: 50, alignSelf: 'center'}}
              source={require('./app/images/earnit-01.png')}/>
-          <RewardView nav={nav}/>
+          <RewardContainer nav={nav}/>
         </View>
       );
     default:

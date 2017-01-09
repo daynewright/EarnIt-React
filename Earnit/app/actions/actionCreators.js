@@ -1,4 +1,5 @@
 import * as actions from './actionTypes';
+import { Alert } from 'react-native';
 
 // START::Registration or Login action creators //
 export function loginUser(user) {
@@ -132,6 +133,7 @@ export function setEvent(event) {
 
 // START::Reward action creators //
 export function createReward(reward) {
+  Alert.alert('',JSON.stringify(reward));
   return { type: actions.CREATE_REWARD, payload: reward };
 }
 
@@ -161,20 +163,28 @@ export function attemptingReward() {
 // END::Reward action creators //
 
 // START::RewardPoint action creators //
-export function createPoint(point) {
-  return { type: actions.CREATE_POINT, payload: point };
+export function createPoint(id) {
+  return { type: actions.CREATE_POINT, payload: id };
 }
 
 export function successCreatePoint(data) {
-  return { type: actions.CREATE_POINT_SUCCESS, payload: data };
+  return { type: actions.CREATE_POINT_SUCCESS, payload: data.eventPoint };
 }
 
 export function failureCreatePoint(error) {
   return { type: actions.CREATE_POINT_FAILURE, payload: error };
 }
 
-export function attemptingCreatePoint() {
-  return { type: actions.CREATE_POINT_ATTEMPT };
+export function getPoints(id) {
+  return { type: actions.GET_POINTS, payload: id };
+}
+
+export function getPointsSuccess(points) {
+  return { type: actions.GET_POINTS_SUCCESS, payload: points.eventPoints };
+}
+
+export function getPointsFailure(error) {
+  return { type: actions.GET_POINTS_FAILURE, payload: error };
 }
 // END::RewardPoint action creators //
 

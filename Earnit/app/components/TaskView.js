@@ -14,14 +14,14 @@ class TaskView extends Component {
   constructor(props) {
     super(props);
 
-    //this.addPoint = this.addPoint.bind(this);
+    this.addPoint = this.addPoint.bind(this);
     this.addReward = this.addReward.bind(this);
     this.viewReward = this.viewReward.bind(this);
-    this.earnedRewards = this.earnedRewards.bind(this);
     this.back = this.back.bind(this);
     this.logOff = this.logOff.bind(this);
     this.addTask = this.addTask.bind(this);
     this.renderRow = this.renderRow.bind(this);
+    this._getPoints = this._getPoints.bind(this);
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
@@ -29,13 +29,13 @@ class TaskView extends Component {
     };
   }
 
+  addPoint(event) {
+    this.props.createPoint(event.eventId);
+  }
+
   logOff() {
     console.log('logoff');
   };
-
-  earnedRewards() {
-    // redirect to earnedRewards view
-  }
 
   back() {
     this.props.nav.resetTo({name: 'HOME'});
@@ -50,18 +50,27 @@ class TaskView extends Component {
     this.props.nav.push({ name: 'ADD_REWARD'});
   }
 
-  viewReward() {
-
+  viewReward(event) {
+    this.props.setEvent(event);
+    this.props.nav.push({ name: 'VIEW_REWARD'});
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
       this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.events.eventsArray) });
+      if (nextProps.events.eventsArray.length > this.props.events.eventsArray.length) {
+        this._getPoints(nextProps);
+      }
     }
   }
 
+  _getPoints(props) {
+    props.events.eventsArray.forEach(e => this.props.getPoints(e.eventId));
+  }
+
+
   renderRow(event) {
-    const { addReward, viewReward } = this;
+    const { addReward, viewReward, addPoint } = this;
 
     const swipeoutAddBtnsRight = [
       {
@@ -79,28 +88,29 @@ class TaskView extends Component {
       {
         text: 'View Reward',
         backgroundColor: '#61afef',
-        onPress: () => { viewReward(event.rewardId) }
+        onPress: () => { viewReward(event) }
       }
     ];
     const swipeoutBtnsLeft = [
       {
         text: 'Delete',
         backgroundColor: '#d13b2e',
-        onPress: () => { viewReward(event.eventId) }
+        onPress: () => { console.log('Delete task') }
       }
     ];
 
     return (
       <Swipeout
+        autoClose={true}
         right={event.rewardId ? swipeoutViewBtnsRight : swipeoutAddBtnsRight }
         left={swipeoutBtnsLeft}
         >
-          <View style={{flex: 1, backgroundColor: '#fff', paddingLeft: 15, paddingBottom: 10, paddingTop: 10}}>
+          <View style={{backgroundColor: '#fff', paddingLeft: 15, paddingBottom: 10, paddingTop: 10}}>
               <View style={{flexDirection: 'row'}}>
                 <View style={{flexDirection: 'column'}}>
                   <Text style={{fontSize: 20, fontWeight: '900'}}>{event.name}</Text>
                     <Text style={{fontStyle: 'italic'}}>{event.description}</Text>
-                    <Text style={{fontWeight: '600'}}>{event.rewardId ? '0/10 pts' : '(slide to add reward)'}</Text>
+                    <Text style={{fontWeight: '600'}}> {event.rewardId && event.reward ? event.earnedPoints >= event.reward.pointsNeeded ? '🌟 REWARD EARNED! 🌟' : `${event.earnedPoints}/${event.reward.pointsNeeded} pts` : '(slide to add reward)'} </Text>
                 </View>
               </View>
           </View>
@@ -113,18 +123,18 @@ class TaskView extends Component {
 
     return (
       <View>
-      <Spinner visible={loading} />
+      <Spinner visible={ loading } />
       {events.error || !events.eventsArray.length ?
         <View>
           <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>
           <Text style={{textAlign: 'center'}}>(No current tasks for this child.)</Text>
         </View> :
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
-          renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-          renderHeader={() => <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>}
-        />
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow}
+            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+            renderHeader={() => <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>}
+          />
       }
       </View>
     );
@@ -134,7 +144,7 @@ class TaskView extends Component {
 const mapStateToProps = function(state) {
   return {
     events: state.events,
-    loading: state.events.loading,
+    loading: state.events.loading
   };
 };
 

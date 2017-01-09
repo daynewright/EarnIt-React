@@ -56,6 +56,10 @@ export const DELETE_REWARD_FAILURE = 'DELETE_REWARD_FAILURE';
 export const CREATE_POINT = 'CREATE_POINT';
 export const CREATE_POINT_SUCCESS = 'CREATE_POINT_SUCCESS';
 export const CREATE_POINT_FAILURE = 'CREATE_POINT_FAILURE';
+
+export const GET_POINTS = 'GET_POINTS';
+export const GET_POINTS_SUCCESS = 'GET_POINTS_SUCCESS';
+export const GET_POINTS_FAILURE = 'GET_POINTS_FAILURE';
 // END::RewardPoints action types //
 
 // START::RewardRedeemed action types //

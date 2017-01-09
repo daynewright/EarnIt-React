@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Alert } from 'react-native';
+import { View, Alert } from 'react-native';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
 import AddRewardForm from '../components/forms/AddRewardForm';
 import * as actionCreators from '../actions/actionCreators';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 class AddRewardContainer extends Component {
   constructor(props) {
@@ -29,7 +31,7 @@ class AddRewardContainer extends Component {
       Alert.alert('ERROR', 'You need to fill out all fields for the reward.');
     }
     else {
-      this.props.createReward({...this.state, eventId: this.props.event.eventId});
+      this.props.createReward({...this.state, eventId: this.props.event.eventId, childId: this.props.child.id});
       this.props.nav.pop();
     }
   }
@@ -62,14 +64,19 @@ class AddRewardContainer extends Component {
   }
 
   render() {
+    const { loading } = this.props;
+
     return (
-      <AddRewardForm
-        back={this.back}
-        onSubmit={this.handleOnClick}
-        onChangeName={this.handleOnChangeName}
-        onChangeDescription={this.handleOnChangeDescription}
-        onChangePointsNeeded={this.handleOnChangePointsNeeded}
-        />
+      <View>
+        <Spinner visible={loading} />
+        <AddRewardForm
+          back={this.back}
+          onSubmit={this.handleOnClick}
+          onChangeName={this.handleOnChangeName}
+          onChangeDescription={this.handleOnChangeDescription}
+          onChangePointsNeeded={this.handleOnChangePointsNeeded}
+          />
+      </View>
     );
   }
 }
@@ -77,7 +84,9 @@ class AddRewardContainer extends Component {
 const mapStateToProps = function(state) {
   return {
     event: state.event,
-    reward: state.reward
+    reward: state.reward,
+    child: state.child,
+    loading: state.events.eventsArray.loading
   };
 };
 

@@ -4,6 +4,7 @@ import { watchGetEvents, watchCreateEvent } from './eventSaga';
 import { watchGetChildren } from './childrenSaga';
 import { watchCreateChild, watchDeleteChild } from './childSaga';
 import { watchCreateReward } from './rewardSaga';
+import { watchCreatePoint, watchGetPoints } from './pointSaga';
 
 function startSagas(...sagas) {
   return function* rootSaga() {
@@ -19,7 +20,9 @@ const rootSaga = startSagas(
   watchDeleteChild,
   watchGetEvents,
   watchCreateEvent,
-  watchCreateReward
+  watchCreateReward,
+  watchCreatePoint,
+  watchGetPoints
 );
 
 export default rootSaga;

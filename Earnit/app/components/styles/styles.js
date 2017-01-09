@@ -111,5 +111,8 @@ module.exports = StyleSheet.create({
     fontWeight: '600',
     color: '#FAFAFA',
     textAlign: 'center',
+  },
+  list: {
+    flex: 1
   }
 });
