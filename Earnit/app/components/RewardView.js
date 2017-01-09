@@ -11,11 +11,13 @@ const RewardView = ({ back, logOff, reward }) => (
   <View>
     <Header back={back} logOff={logOff}/>
     <View>
-      <Text style={styles.text}>NAME: {reward.name}</Text>
-      <Text style={styles.text}>DESCRIPTION: {reward.description}</Text>
-      <Text style={styles.text}>POINTS NEEDED: {reward.pointsNeeded}</Text>
+      <Text style={[styles.center, styles.name]}> 🏆 {reward.name} 🏆</Text>
+      <Text style={[styles.center, styles.description]}>{reward.description}</Text>
+      <Text style={[styles.center, styles.points]}>{reward.pointsNeeded} points</Text>
     </View>
   </View>
 );
+
+
 
 export default RewardView;
