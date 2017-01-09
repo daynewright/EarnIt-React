@@ -144,8 +144,7 @@ class TaskView extends Component {
 const mapStateToProps = function(state) {
   return {
     events: state.events,
-    loading: state.events.loading,
-    loadingPoints: state.events.loadingPoints
+    loading: state.events.loading
   };
 };
 
