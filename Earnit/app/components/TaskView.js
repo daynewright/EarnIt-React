@@ -119,11 +119,11 @@ class TaskView extends Component {
   }
 
   render() {
-    const { loading, events, loadingPoints } = this.props;
+    const { loading, events } = this.props;
 
     return (
       <View>
-      <Spinner visible={loadingPoints || loading } />
+      <Spinner visible={ loading } />
       {events.error || !events.eventsArray.length ?
         <View>
           <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>
