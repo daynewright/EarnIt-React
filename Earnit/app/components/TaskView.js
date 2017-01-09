@@ -105,12 +105,12 @@ class TaskView extends Component {
         right={event.rewardId ? swipeoutViewBtnsRight : swipeoutAddBtnsRight }
         left={swipeoutBtnsLeft}
         >
-          <View style={{flex: 1, backgroundColor: '#fff', paddingLeft: 15, paddingBottom: 10, paddingTop: 10}}>
+          <View style={{backgroundColor: '#fff', paddingLeft: 15, paddingBottom: 10, paddingTop: 10}}>
               <View style={{flexDirection: 'row'}}>
                 <View style={{flexDirection: 'column'}}>
                   <Text style={{fontSize: 20, fontWeight: '900'}}>{event.name}</Text>
                     <Text style={{fontStyle: 'italic'}}>{event.description}</Text>
-                    <Text style={{fontWeight: '600'}}> {event.rewardId ? event.earnedPoints >= event.reward.pointsNeeded ? '🌟 REWARD EARNED! 🌟' : `${event.earnedPoints}/${event.reward.pointsNeeded} pts` : '(slide to add reward)'} </Text>
+                    <Text style={{fontWeight: '600'}}> {event.rewardId && event.reward ? event.earnedPoints >= event.reward.pointsNeeded ? '🌟 REWARD EARNED! 🌟' : `${event.earnedPoints}/${event.reward.pointsNeeded} pts` : '(slide to add reward)'} </Text>
                 </View>
               </View>
           </View>
@@ -129,12 +129,12 @@ class TaskView extends Component {
           <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>
           <Text style={{textAlign: 'center'}}>(No current tasks for this child.)</Text>
         </View> :
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
-          renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-          renderHeader={() => <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>}
-        />
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow}
+            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+            renderHeader={() => <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>}
+          />
       }
       </View>
     );

@@ -25,6 +25,7 @@ function* createReward(action) {
     else {
       const reward = yield data.json();
       yield put(actionCreators.successCreateReward(reward));
+      yield put(actionCreators.getEvents(action.payload.childId));
     }
   }
   catch (error) {

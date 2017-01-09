@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { bindActionCreators } from 'redux';
 import styles from '../components/styles/styles';
 import AddRewardForm from '../components/forms/AddRewardForm';
@@ -31,8 +31,7 @@ class AddRewardContainer extends Component {
       Alert.alert('ERROR', 'You need to fill out all fields for the reward.');
     }
     else {
-      this.props.createReward({...this.state, eventId: this.props.event.eventId});
-      this.props.getEvents(this.props.child.id);
+      this.props.createReward({...this.state, eventId: this.props.event.eventId, childId: this.props.child.id});
       this.props.nav.pop();
     }
   }
