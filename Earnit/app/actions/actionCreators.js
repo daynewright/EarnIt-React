@@ -166,7 +166,7 @@ export function createPoint(id) {
 }
 
 export function successCreatePoint(data) {
-  return { type: actions.CREATE_POINT_SUCCESS, payload: data };
+  return { type: actions.CREATE_POINT_SUCCESS, payload: data.eventPoint };
 }
 
 export function failureCreatePoint(error) {
@@ -178,7 +178,7 @@ export function getPoints(id) {
 }
 
 export function getPointsSuccess(points) {
-  return { type: actions.GET_POINTS_SUCCESS, payload: points };
+  return { type: actions.GET_POINTS_SUCCESS, payload: points.eventPoints };
 }
 
 export function getPointsFailure(error) {

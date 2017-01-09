@@ -14,14 +14,14 @@ class TaskView extends Component {
   constructor(props) {
     super(props);
 
-    //this.addPoint = this.addPoint.bind(this);
+    this.addPoint = this.addPoint.bind(this);
     this.addReward = this.addReward.bind(this);
     this.viewReward = this.viewReward.bind(this);
-    this.earnedRewards = this.earnedRewards.bind(this);
     this.back = this.back.bind(this);
     this.logOff = this.logOff.bind(this);
     this.addTask = this.addTask.bind(this);
     this.renderRow = this.renderRow.bind(this);
+    this._getPoints = this._getPoints.bind(this);
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
@@ -31,16 +31,11 @@ class TaskView extends Component {
 
   addPoint(event) {
     this.props.createPoint(event.eventId);
-    // build point reducer and add pointsEarned to events array
   }
 
   logOff() {
     console.log('logoff');
   };
-
-  earnedRewards() {
-    // redirect to earnedRewards view
-  }
 
   back() {
     this.props.nav.resetTo({name: 'HOME'});
@@ -63,11 +58,19 @@ class TaskView extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
       this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.events.eventsArray) });
+      if (nextProps.events.eventsArray.length > this.props.events.eventsArray.length) {
+        this._getPoints(nextProps);
+      }
     }
   }
 
+  _getPoints(props) {
+    props.events.eventsArray.forEach(e => this.props.getPoints(e.eventId));
+  }
+
+
   renderRow(event) {
-    const { addReward, viewReward } = this;
+    const { addReward, viewReward, addPoint } = this;
 
     const swipeoutAddBtnsRight = [
       {
@@ -107,7 +110,7 @@ class TaskView extends Component {
                 <View style={{flexDirection: 'column'}}>
                   <Text style={{fontSize: 20, fontWeight: '900'}}>{event.name}</Text>
                     <Text style={{fontStyle: 'italic'}}>{event.description}</Text>
-                    <Text style={{fontWeight: '600'}}> {event.rewardId ? `0/${event.reward.pointsNeeded} pts` : '(slide to add reward)'} </Text>
+                    <Text style={{fontWeight: '600'}}> {event.rewardId ? `${event.earnedPoints}/${event.reward.pointsNeeded} pts` : '(slide to add reward)'} </Text>
                 </View>
               </View>
           </View>
@@ -116,11 +119,11 @@ class TaskView extends Component {
   }
 
   render() {
-    const { loading, events } = this.props;
+    const { loading, events, loadingPoints } = this.props;
 
     return (
       <View>
-      <Spinner visible={loading} />
+      <Spinner visible={loadingPoints || loading } />
       {events.error || !events.eventsArray.length ?
         <View>
           <Header addTask={this.addTask} earnedRewards={this.earnedRewards} back={this.back} logOff={this.logOff}/>
@@ -142,6 +145,7 @@ const mapStateToProps = function(state) {
   return {
     events: state.events,
     loading: state.events.loading,
+    loadingPoints: state.events.loadingPoints
   };
 };
 
