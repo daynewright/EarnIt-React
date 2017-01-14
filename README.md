@@ -53,6 +53,12 @@ Once you navigate to the task view, you will see a list of tasks added for that 
 
 <kbd>![View Tasks](img/view_tasks.png)</kbd>
 
+### Slide View Add Reward button
+
+If the current task you are viewing does not have a reward associated with it then you will get the button `ADD REWARD` when you slide left.
+
+<kbd>![Add Reward Btn](img/add_reward_btn.png)</kbd>
+
 ### Add Reward
 
 If a task has no reward added then you will be instructed to slide left and click the `ADD REWARD` button.  You will be met with a form to add a reward for that task.
