@@ -21,7 +21,7 @@ You can watch a quick 5 minute video presentation of the application [here](http
 - [View Tasks](#view-tasks)
 - [Add Reward Button](#slide-view-add-reward-button)
 - [Add Reward](#add-reward)
-- [Add Points](#slide-view-add-points)
+- [Add Points](#add-points)
 - [Remove Child](#remove-child)
 
 ## Walkthrough
