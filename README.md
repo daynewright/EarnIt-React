@@ -14,7 +14,7 @@ You can watch a quick 5 minute video presentation of the application [here](http
 
 ## Table of Contents
 
-- [Login / Register](#Login)
+- [Login / Register](#login--register)
 - [View Children](#view-children)
 - [Add Child](#add-child)
 - [Add Task Button](#slide-view-task-button)
