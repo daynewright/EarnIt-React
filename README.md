@@ -10,8 +10,19 @@ React-Native | Redux | Redux-Saga
 
 ## Video Overview
 
-
 You can watch a quick 5 minute video presentation of the application [here](https://youtu.be/s1SmGfkmU2Y).
+
+## Table of Contents
+
+- [Login / Register](#Login)
+- [View Children](#view-children)
+- [Add Child](#add-child)
+- [Add Task Button](#slide-view-task-button)
+- [View Tasks](#view-tasks)
+- [Add Reward Button](#slide-view-add-reward-button)
+- [Add Reward](#add-reward)
+- [Add Points](#slide-view-add-points)
+- [Remove Child](#remove-child)
 
 ## Walkthrough
 
