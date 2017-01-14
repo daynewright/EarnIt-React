@@ -10,7 +10,9 @@ React-Native | Redux | Redux-Saga
 
 ## Video Overview
 
-You can watch a quick 5 minute video presentation of the application [here](https://youtu.be/s1SmGfkmU2Y).
+[![Video Overview](img/video.png)](http://www.youtube.com/watch?v=s1SmGfkmU2Y "EarnIt Overview")
+
+You can watch a quick 5 minute video presentation of the application  by clicking above or [here](https://youtu.be/s1SmGfkmU2Y).
 
 ## Table of Contents
 
